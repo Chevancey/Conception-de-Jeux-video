@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public Movement movement;// {get; private set;} 
+    public Movement movement {get; private set;} 
 
     void Awake()
     {
