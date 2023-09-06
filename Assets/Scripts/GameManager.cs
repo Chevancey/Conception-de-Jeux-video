@@ -20,11 +20,6 @@ public class GameManager : MonoBehaviour
     public int currentLives { get; private set; }
     public int pointMultiplier { get; private set; } = 2;
 
-
-    [SerializeField] AudioClip muchSound1;
-    [SerializeField] AudioClip muchSound2;
-    bool munchingAlternate = false;
-
     void Start()
     {
         StatNewGame();
@@ -100,13 +95,6 @@ public class GameManager : MonoBehaviour
         SetScore(currentScore + (pellet.points * pointMultiplier));
 
         pellet.gameObject.SetActive(false);
-
-        if (munchingAlternate)
-            SoundManager.Instance?.playClipAtPosition(transform.position, muchSound1);
-        else
-            SoundManager.Instance?.playClipAtPosition(transform.position, muchSound2);
-
-        munchingAlternate = !munchingAlternate;
 
         if (HasEatenAll()) 
         {
