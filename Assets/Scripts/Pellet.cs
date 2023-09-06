@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pellet : MonoBehaviour
 {
-
+    [SerializeField] AudioClip eatenSound;
     public int points = 10;
 
     protected virtual void Eat() 
