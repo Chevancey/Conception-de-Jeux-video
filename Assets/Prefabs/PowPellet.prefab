@@ -143,5 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a269ca7c6d45e04f8ee90e2ffcfbea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  muchSound1: {fileID: 0}
+  muchSound2: {fileID: 0}
   points: 10
+  powerPelletMunchSound: {fileID: 8300000, guid: 83a9172afe554444e912dab288028a1c, type: 3}
   duration: 8
