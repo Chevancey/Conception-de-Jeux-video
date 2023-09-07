@@ -8,22 +8,23 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public Rigidbody2D my_rigidbody { get; private set; }
+    public Rigidbody2D myRigidbody { get; private set; }
 
-    public float speed = 8.0f;
-    public float speedMuliplier = 1.0f;
+    [SerializeField]
+    private float speed = 8.0f;
+    [SerializeField]
+    private float speedMuliplier = 1.0f;
 
     public Vector2 initialDirection;
 
     public LayerMask obstacleLayer;
-
-    public Vector2 currentDirection { get; private set; }
+    public Vector2 currentDirection { get; private set;  }
     public Vector2 nextDirection { get; private set; }
     public Vector3 startPosition { get; private set; }
 
     void Awake()
     {
-        my_rigidbody = GetComponent<Rigidbody2D>();
+        myRigidbody = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
     }
 
@@ -42,9 +43,9 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 position = my_rigidbody.position;
+        Vector2 position = myRigidbody.position;
         Vector2 translation = currentDirection * speed * speedMuliplier * Time.fixedDeltaTime;
-        my_rigidbody.MovePosition(position + translation);
+        myRigidbody.MovePosition(position + translation);
     }
 
     public void SetDirection(Vector2 direction, bool noclip = false)
@@ -73,7 +74,7 @@ public class Movement : MonoBehaviour
         currentDirection = initialDirection;
         nextDirection = Vector2.zero;
         transform.position = startPosition;
-        my_rigidbody.isKinematic = false;
+        myRigidbody.isKinematic = false;
         this.enabled = true;
     }
 

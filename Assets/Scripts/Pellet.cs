@@ -12,7 +12,6 @@ public class Pellet : MonoBehaviour
 
     protected virtual void Eat() 
     {
-        //gameObject.SetActive(false);
         FindObjectOfType<GameManager>().PelletEaten(this);
 
         if (munchingAlternate)
@@ -29,16 +28,5 @@ public class Pellet : MonoBehaviour
         {
             Eat();
         }
-    }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
