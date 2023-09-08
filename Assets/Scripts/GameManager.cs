@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         StatNewGame();
         foreach (GhostController ghosti in _ghost)
         {
-            ghosti.SetGameManager(this);
+            ghosti.gameManager = this;
         }
     }
 
@@ -166,11 +166,6 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDeath()
     {
-        for (int i = 0; i < ghost.Length; i++)
-        {
-            _ghost[i].gameObject.SetActive(false);
-        }
-
         pacman.Dying();
         music.clip = audioClips[2];
         music.loop = false;
