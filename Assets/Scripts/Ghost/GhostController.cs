@@ -6,7 +6,6 @@ public class GhostController : MonoBehaviour
 {
 
     public Movement movement { get; private set; }
-
     public GhostChase chase { get; private set; } 
     public GhostIdle idle { get; private set; }
     public GhostScared scared { get; private set; }
@@ -19,13 +18,11 @@ public class GhostController : MonoBehaviour
 
     public Transform target;
 
-    [SerializeField] private SpriteRenderer[] bodySpriteRenderer;
-    private int currentSprite = 0;
-    private float timeBetweenFrames = 0.25f;
+    [SerializeField] private SpriteRenderer Body;
+    [SerializeField] private SpriteRenderer Blue;
+    [SerializeField] private SpriteRenderer White;
 
     public int points { get; private set; } = 200;
-
-
 
     private void Awake()
     {
@@ -67,46 +64,36 @@ public class GhostController : MonoBehaviour
     public void SetScared(float duration)
     {
         CancelInvoke();
-        chase.Disable();
         scatter.Enable(); // TODO: replace with the scared
         scared.Enable();
 
-        bodySpriteRenderer[currentSprite].enabled = false;
-        currentSprite = 1;
-        bodySpriteRenderer[currentSprite].enabled = true;
+        Body.enabled = false;
+        Blue.enabled = true;
+        White.enabled = false;
 
         Invoke(nameof(NotScared), duration);
-        InvokeRepeating(nameof(SoonNotScared), duration - 3, timeBetweenFrames);
+        Invoke(nameof(SoonNotScared), duration - 3);
     }
+
     private void NotScared()
     {
         CancelInvoke();
 
-        bodySpriteRenderer[currentSprite].enabled = false;
-        currentSprite = 0;
-        bodySpriteRenderer[currentSprite].enabled = true;
+        Body.enabled = true;
+        Blue.enabled = false;
+        White.enabled = false;
+
+        Debug.Log("YEEEEEEEEEEEEEEE");
 
         scared.Disable();
-        chase.Disable();
         scatter.Enable();
-
-        if (idle != initialBehavior)
-        {
-            idle.Disable();
-        }
-
-        if (initialBehavior != null)
-        {
-            initialBehavior.Enable();
-        }
     }
 
     private void SoonNotScared()
     {
-        bodySpriteRenderer[(currentSprite % 2) + 1].enabled = true;
-        bodySpriteRenderer[currentSprite].enabled = false;
-
-        currentSprite = (currentSprite % 2) + 1;
+        Body.enabled = false;
+        Blue.enabled = false;
+        White.enabled = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -119,7 +106,9 @@ public class GhostController : MonoBehaviour
                 {
                     isDead = true;
                     NotScared();
-                    bodySpriteRenderer[currentSprite].enabled = false;
+                    Body.enabled = false;
+                    Blue.enabled = false;
+                    White.enabled = false;
                     GameManager.Instance.GhostDeath(this);
 
                     // TODO: behaviour once eaten

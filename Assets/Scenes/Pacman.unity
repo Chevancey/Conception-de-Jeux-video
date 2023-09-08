@@ -339,7 +339,7 @@ MonoBehaviour:
   - {fileID: 44605994}
   - {fileID: 1794261}
   pacman: {fileID: 1796566965}
-  boundsTilemap: {fileID: 0}
+  boundsTilemap: {fileID: 669078988086559223}
   pellets: {fileID: 4444753392902881082}
   audioClips:
   - {fileID: 8300000, guid: 5bab4652e85f0be4ea19c7fde5f21025, type: 3}
@@ -10770,7 +10770,7 @@ Transform:
   m_GameObject: {fileID: 2892309495648576324}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
