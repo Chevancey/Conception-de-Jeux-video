@@ -63,9 +63,11 @@ public class HighscoreManager : MonoBehaviour
     }
 
     public HighScoreItem[] ReadHighScores() {
-        if (File.Exists(persistentPath)) {
+        if (File.Exists(path)) {
+            using StreamReader stream = new(path);
+            string content = stream.ReadToEnd();
 
-            HighScores highScores = ReadJsonHighScore();
+            HighScores highScores = JsonUtility.FromJson<HighScores>(content);
             return highScores.highScoreItems;
         }
         return Array.Empty<HighScoreItem>();
@@ -73,8 +75,12 @@ public class HighscoreManager : MonoBehaviour
 
     public void WriteHighScore(int score, string name, DateTime date) {
         HighScores highScores;
-        if (File.Exists(persistentPath)) {
-            highScores = ReadJsonHighScore();
+        List<HighScoreItem> highscoreList;
+        if (File.Exists(path)) {
+            using StreamReader readStream = new(path);
+            string content = readStream.ReadToEnd();
+            Debug.Log(content);
+            highScores = JsonUtility.FromJson<HighScores>(content);
         } else {
             highScores = new()
             {
@@ -82,39 +88,38 @@ public class HighscoreManager : MonoBehaviour
             };
         }
         //Debug.Log("score : "+score + " name: " + name + " date: " + date.ToString("dd/MM"));
-        highScores.highScoreItems.Append(new HighScoreItem(score, name, date.ToString("dd/MM")));
-        Array.Sort(highScores.highScoreItems);
-        Debug.Log(highScores.highScoreItems[0]);
-        WriteJsonHighScore(highScores);
-    }
-
-    private void WriteJsonHighScore(HighScores highscores) {
-        HighScoreJsons toWrite = new() {
-            highScoreItems = Array.Empty<string>()
+        highscoreList = new(highScores.highScoreItems)
+        {
+            new HighScoreItem(score, name, date.ToString("dd/MM"))
         };
-        foreach(HighScoreItem highScore in highscores.highScoreItems) {
-            toWrite.highScoreItems.Append(JsonUtility.ToJson(highScore,true));
-        }
+        highscoreList.Sort();
+        highScores.highScoreItems = highscoreList.ToArray();
+
         using StreamWriter writeStream = new(path);
-        string serializedList = JsonUtility.ToJson(toWrite,true);
-        //Debug.Log(toWrite.highScoreItems[0]);
+        string serializedList = JsonUtility.ToJson(highScores,true);
 
         writeStream.Write(serializedList);
     }
 
-    private HighScores ReadJsonHighScore() {
-        HighScoreJsons highScoreJsons;
-        HighScores highScores = new() {
-            highScoreItems = Array.Empty<HighScoreItem>()
-        };
+    public void UpdateHighScores() {
+        if (File.Exists(path)) {
+            HighScores highScores;
+            List<HighScoreItem> highscoreList;
+            
+            using StreamReader readStream = new(path);
+            string content = readStream.ReadToEnd();
+            Debug.Log(content);
+            highScores = JsonUtility.FromJson<HighScores>(content);
+            readStream.Dispose();
 
-        using StreamReader readStream = new(path);
-        string content = readStream.ReadToEnd();
+            highscoreList = new(highScores.highScoreItems);
+            highscoreList.Sort();
+            highScores.highScoreItems = highscoreList.ToArray();
 
-        highScoreJsons = JsonUtility.FromJson<HighScoreJsons>(content);
-        foreach(string jsonHighScore in highScoreJsons.highScoreItems) {
-            highScores.highScoreItems.Append(JsonUtility.FromJson<HighScoreItem>(jsonHighScore));
+            using StreamWriter writeStream = new(path);
+            string serializedList = JsonUtility.ToJson(highScores,true);
+
+            writeStream.Write(serializedList);
         }
-        return highScores;
     }
 }
