@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         StatNewGame();
         foreach (GhostController ghosti in _ghost)
         {
-            ghosti.gameManager = this;
+            ghosti.SetGameManager(this);
         }
     }
 
