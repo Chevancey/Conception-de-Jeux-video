@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.TextCore.Text;
 
 public class HighScoreBehaviour : MonoBehaviour
 {
