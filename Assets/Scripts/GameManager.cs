@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,16 +14,27 @@ public class GameManager : MonoBehaviour
     }
 
     public PlayerController pacman;
+    private SpriteRenderer pacmanRenderer;
+
+    [SerializeField] private Tilemap boundsTilemap;
 
     public Transform pellets;
 
+    [SerializeField] private AudioClip[] audioClips;
+    [SerializeField] private AudioSource music;
+
     public int currentScore { get; private set; }
     public int currentLives { get; private set; }
-    public int pointMultiplier { get; private set; } = 2;
+    public int pointMultiplier { get; private set; } = 1;
 
     void Start()
     {
         StatNewGame();
+        pacmanRenderer = pacman.gameObject.GetComponent<SpriteRenderer>();
+        foreach (GhostController ghosti in _ghost)
+        {
+            ghosti.gameManager = this;
+        }
     }
 
     void Update()
@@ -82,7 +94,8 @@ public class GameManager : MonoBehaviour
 
     public void GhostDeath(GhostController ghost) 
     {
-        SetScore(currentScore + ghost.points);
+        SetScore(currentScore + ghost.points * pointMultiplier);
+        pointMultiplier *= 2;
     }
 
     private void ResetMultiplier() 
@@ -99,17 +112,38 @@ public class GameManager : MonoBehaviour
         if (HasEatenAll()) 
         {
             pacman.gameObject.SetActive(false);
-            Invoke(nameof(ResetState), 3.0f);
+            Invoke(nameof(NewRound), 3.0f);
         }
     }
 
     public void PowPelletEaten(PowPellet powPellet)
     {
         PelletEaten(powPellet);
-        CancelInvoke();
-        Invoke(nameof(ResetMultiplier), powPellet.duration);
-        
-        // add ghost being scared off
+        if (!HasEatenAll())
+        {
+            CancelInvoke();
+            foreach(GhostController ghosti in _ghost)
+            {
+                ghosti.SetVulnerable(powPellet.duration);
+                // add ghosts being scared off in the ghostController
+            }
+
+            music.clip = audioClips[1];
+            music.Play();
+            pacmanRenderer.color = Color.green;
+            boundsTilemap.color = Color.red;
+
+            Invoke(nameof(EndPoweredState), powPellet.duration);
+        }
+    }
+
+    public void EndPoweredState()
+    {
+        music.clip = audioClips[0];
+        music.Play();
+        pacmanRenderer.color = Color.white;
+        boundsTilemap.color = Color.white;
+        ResetMultiplier();
     }
 
     private bool HasEatenAll() 
