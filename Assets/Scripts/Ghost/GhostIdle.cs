@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GhostController : MonoBehaviour
+public class GhostIdle : GhostBehavior
 {
     [SerializeField] private SpriteRenderer[] bodySpriteRenderer;
     private int currentSprite = 0;
@@ -21,12 +21,13 @@ public class GhostController : MonoBehaviour
 
     public int points { get; private set; } = 200;
 
+    // Start is called before the first frame update
     void Start()
     {
         movement = gameObject.GetComponent<Movement>();
     }
 
-
+    // Update is called once per frame
     void Update()
     {
         
