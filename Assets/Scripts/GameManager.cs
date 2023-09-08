@@ -22,6 +22,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private AudioClip[] audioClips;
     [SerializeField] private AudioSource music;
 
+    [SerializeField] private GameObject endScreenCanva;
+
     public int currentScore { get; private set; }
     public int currentLives { get; private set; }
     public int pointMultiplier { get; private set; } = 1;
@@ -56,6 +58,13 @@ public class GameManager : Singleton<GameManager>
         }
 
         pacman.gameObject.SetActive(false);
+
+        Invoke(nameof(ShowEndScreen), waitForReset);
+    }
+
+    void ShowEndScreen()
+    {
+        endScreenCanva.SetActive(true);
     }
 
     private void NewRound() 
