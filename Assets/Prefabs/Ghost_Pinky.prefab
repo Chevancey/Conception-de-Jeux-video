@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost_Pinky
       objectReference: {fileID: 0}
+    - target: {fileID: 3019599069834310598, guid: c30d9e3730978454c95f3bdf2fb81595, type: 3}
+      propertyPath: initialBehavior
+      value: 
+      objectReference: {fileID: 4365759796325681343}
     - target: {fileID: 4819391772068178126, guid: c30d9e3730978454c95f3bdf2fb81595, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -80,8 +84,23 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.9882353
       objectReference: {fileID: 0}
+    - target: {fileID: 8188903146381876719, guid: c30d9e3730978454c95f3bdf2fb81595, type: 3}
+      propertyPath: setDuration
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c30d9e3730978454c95f3bdf2fb81595, type: 3}
+--- !u!114 &4365759796325681343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8188903146381876719, guid: c30d9e3730978454c95f3bdf2fb81595, type: 3}
+  m_PrefabInstance: {fileID: 5562683728960361808}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de91c34799e9cd4a8bf349788ded632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

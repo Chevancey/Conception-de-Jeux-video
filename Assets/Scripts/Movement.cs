@@ -61,9 +61,9 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public bool isOccupide(Vector2 direciton)
+    public bool isOccupide(Vector2 direction)
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, direciton, 1.5f, obstacleLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f, obstacleLayer);
 
         return hit.collider != null;
     }

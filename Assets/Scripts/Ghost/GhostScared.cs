@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostBehavior : MonoBehaviour
+public class GhostScared : GhostBehavior
 {
     // Start is called before the first frame update
     void Start()

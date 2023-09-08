@@ -36,4 +36,10 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(movement.currentDirection.y, movement.currentDirection.x);
         transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
     }
+
+    public void ResetState() 
+    {
+        gameObject.SetActive(true);
+        movement.ResetState();
+    }
 }

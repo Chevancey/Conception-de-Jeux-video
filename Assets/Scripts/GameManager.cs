@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
 
     public GhostController[] _ghost;
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
             _ghost[i].gameObject.SetActive(false);
         }
 
-        this.pacman.gameObject.SetActive(false);
+        pacman.gameObject.SetActive(false);
     }
 
     private void NewRound() 
@@ -64,10 +64,10 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < ghost.Length; i++)
         {
-            _ghost[i].gameObject.SetActive(true);
+            _ghost[i].ResetState();
         }
 
-        pacman.gameObject.SetActive(true);
+        pacman.ResetState();
     }
 
     private void SetScore(int score) 
