@@ -10,17 +10,18 @@ public class GhostController : MonoBehaviour
     public GhostIdle idle { get; private set; }
     public GhostScared scared { get; private set; }
     public GhostScatter scatter { get; private set; }
+    public GhostReturn returnBehavior { get; private set; }
     //TODO
-    private bool isDead = false;
+    public bool isDead = false;
     //Remplacer ça par un script qui renvoie le fantome à la base
 
     public GhostBehavior initialBehavior;
 
     public Transform target;
 
-    [SerializeField] private SpriteRenderer Body;
-    [SerializeField] private SpriteRenderer Blue;
-    [SerializeField] private SpriteRenderer White;
+    public SpriteRenderer Body;
+    public SpriteRenderer Blue;
+    public SpriteRenderer White;
 
     public int points { get; private set; } = 200;
 
@@ -32,6 +33,7 @@ public class GhostController : MonoBehaviour
         idle = GetComponent<GhostIdle>();
         scared = GetComponent<GhostScared>();
         scatter = GetComponent<GhostScatter>();
+        returnBehavior = GetComponent<GhostReturn>();
 
         //Debug.Log(initialBehavior == GetComponent <GhostScatter>());
     }
@@ -66,8 +68,6 @@ public class GhostController : MonoBehaviour
         CancelInvoke();
 
         scared.Enable();
-        chase.Disable();
-        scatter.Disable();
 
         Body.enabled = false;
         Blue.enabled = true;
@@ -84,8 +84,6 @@ public class GhostController : MonoBehaviour
         Body.enabled = true;
         Blue.enabled = false;
         White.enabled = false;
-
-        Debug.Log("YEEEEEEEEEEEEEEE");
 
         scared.Disable();
     }
@@ -106,14 +104,16 @@ public class GhostController : MonoBehaviour
                 if (scared.enabled)
                 {
                     isDead = true;
+
+                    returnBehavior.enabled = true;
                     NotScared();
+
                     Body.enabled = false;
                     Blue.enabled = false;
                     White.enabled = false;
 
                     GameManager.Instance.GhostDeath(this);
 
-                    // TODO: behaviour once eaten
                 }
                 else
                 {

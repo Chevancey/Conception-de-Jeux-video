@@ -153,6 +153,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4489874095403392164, guid: cd93d8fa3cc7a164c9304a383ec8af89, type: 3}
+      propertyPath: setDuration
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4651728085078639215, guid: cd93d8fa3cc7a164c9304a383ec8af89, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -346,6 +350,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 83a9172afe554444e912dab288028a1c, type: 3}
   - {fileID: 8300000, guid: fd36ed4e79f54284e8e45f6d21fb5929, type: 3}
   music: {fileID: 1553774446}
+  startTarget: {fileID: 1755964993}
 --- !u!4 &275999391
 Transform:
   m_ObjectHideFlags: 0
@@ -1257,6 +1262,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1755964992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1755964993}
+  - component: {fileID: 1755964994}
+  m_Layer: 11
+  m_Name: StartNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1755964993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755964992}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1755964994
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755964992}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1796566957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,7 +1378,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f8f2ab5881c3e9949bf4ffe9525a0fb7, type: 3}
   - {fileID: 21300000, guid: 1f9604f5749fde646a59a72c9ee1cd3a, type: 3}
   - {fileID: 21300000, guid: e3b83262a412c74408dba5cbe89f43f5, type: 3}
-  dyingSprites: []
+  dyingSprites:
+  - {fileID: 21300000, guid: e3b83262a412c74408dba5cbe89f43f5, type: 3}
+  - {fileID: 21300000, guid: 7c2a3428d5369f54e89eac69cd0ee74f, type: 3}
+  - {fileID: 21300000, guid: c2677ca0e0dc70f42a7f29031ae0a7d5, type: 3}
+  - {fileID: 21300000, guid: b595a8ceed8117d4cb85975acdec433e, type: 3}
+  - {fileID: 21300000, guid: 5831e314f767e4343be659f70d5311d8, type: 3}
+  - {fileID: 21300000, guid: 7ae4f038555669349b19305499ef3267, type: 3}
+  - {fileID: 21300000, guid: 2eb4a7f536f928148baff2eeba8af7a0, type: 3}
+  - {fileID: 21300000, guid: 2218b2226c23db74c8e39a743542e2e3, type: 3}
+  - {fileID: 21300000, guid: 6767e4473f995a2408eec5b583ded67a, type: 3}
+  - {fileID: 21300000, guid: d4f6bec92b04f35459999a9696d2a1da, type: 3}
+  - {fileID: 21300000, guid: 273b5a5d3e562d3419ecad3222b29217, type: 3}
+  - {fileID: 21300000, guid: c66651b84f0bd454e909b29b38595d84, type: 3}
   stepWait: 0.125
   dyingStepWait: 0.2
   loop: 1
@@ -10929,3 +11023,4 @@ SceneRoots:
   - {fileID: 1044252245}
   - {fileID: 28975652}
   - {fileID: 1553774447}
+  - {fileID: 1755964993}

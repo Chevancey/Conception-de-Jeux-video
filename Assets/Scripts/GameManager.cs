@@ -28,6 +28,8 @@ public class GameManager : Singleton<GameManager>
 
     private float waitForReset = 4.0f;
 
+    public Transform startTarget;
+
     void Start()
     {
         StatNewGame();
@@ -123,11 +125,14 @@ public class GameManager : Singleton<GameManager>
         if (!HasEatenAll())
         {
             CancelInvoke();
-            foreach(GhostController ghosti in _ghost)
+            foreach(GhostController ghost in _ghost)
             {
-                ghosti.SetScared(powPellet.duration);
-                // add ghosts being scared off in the ghostController
+                if (!ghost.isDead) 
+                {
+                    ghost.SetScared(powPellet.duration);
+                }
             }
+
 
             music.clip = audioClips[1];
             music.Play();

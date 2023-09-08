@@ -6,7 +6,6 @@ using UnityEngine;
 
 public abstract class GhostBehavior : MonoBehaviour
 {
-    
     public GhostController ghostController {  get; private set; }
     public float setDuration;
 

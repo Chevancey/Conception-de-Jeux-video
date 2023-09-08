@@ -83,4 +83,9 @@ public class Movement : MonoBehaviour
         currentDirection = Vector2.zero;
     }
 
+    public void SetSpeed(float speed) 
+    {
+        this.speed = speed;
+    }
+
 }

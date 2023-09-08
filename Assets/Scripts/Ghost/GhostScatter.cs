@@ -8,7 +8,7 @@ public class GhostScatter : GhostBehavior
 {
     private void OnDisable()
     {
-        if (ghostController.chase.enabled == false)
+        if (!ghostController.scared.enabled)
             ghostController.chase.Enable();
     }
 
