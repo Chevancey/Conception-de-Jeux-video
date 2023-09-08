@@ -64,8 +64,10 @@ public class GhostController : MonoBehaviour
     public void SetScared(float duration)
     {
         CancelInvoke();
-        scatter.Enable(); // TODO: replace with the scared
+
         scared.Enable();
+        chase.Disable();
+        scatter.Disable();
 
         Body.enabled = false;
         Blue.enabled = true;
@@ -86,7 +88,6 @@ public class GhostController : MonoBehaviour
         Debug.Log("YEEEEEEEEEEEEEEE");
 
         scared.Disable();
-        scatter.Enable();
     }
 
     private void SoonNotScared()
@@ -109,6 +110,7 @@ public class GhostController : MonoBehaviour
                     Body.enabled = false;
                     Blue.enabled = false;
                     White.enabled = false;
+
                     GameManager.Instance.GhostDeath(this);
 
                     // TODO: behaviour once eaten

@@ -8,7 +8,8 @@ public class GhostScatter : GhostBehavior
 {
     private void OnDisable()
     {
-        ghostController.chase.Enable();
+        if (ghostController.chase.enabled == false)
+            ghostController.chase.Enable();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -28,6 +29,8 @@ public class GhostScatter : GhostBehavior
                     index = 0;
                 }
             }
+
+            Debug.Log(node.availableDirections[index]);
             this.ghostController.movement.SetDirection(node.availableDirections[index]);
         }
     }
