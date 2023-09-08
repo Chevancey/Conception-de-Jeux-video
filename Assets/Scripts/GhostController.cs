@@ -11,6 +11,8 @@ public class GhostController : MonoBehaviour
 
     public GameManager gameManager;
 
+    private Movement movement;
+
     public bool isVulnerable { get; private set; } = false;
     //Use that to set the movement away from the player (ghosts are affraid)
     private bool isDead = false;
@@ -21,7 +23,7 @@ public class GhostController : MonoBehaviour
 
     void Start()
     {
-        
+        movement = GetComponent<Movement>();
     }
 
 
@@ -62,7 +64,6 @@ public class GhostController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("ok");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             if (!isDead)
@@ -81,6 +82,12 @@ public class GhostController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ResetState()
+    {
+        movement.ResetState();
+        //See how you can reset the behaviour of the ghosts
     }
 
 }

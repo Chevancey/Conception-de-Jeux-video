@@ -78,5 +78,9 @@ public class Movement : MonoBehaviour
         this.enabled = true;
     }
 
+    public void PlayerDying()
+    {
+        currentDirection = Vector2.zero;
+    }
 
 }
