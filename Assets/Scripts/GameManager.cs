@@ -31,10 +31,6 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         StatNewGame();
-        foreach (GhostController ghosti in _ghost)
-        {
-            ghosti.SetGameManager(this);
-        }
     }
 
     void Update()
@@ -129,7 +125,7 @@ public class GameManager : Singleton<GameManager>
             CancelInvoke();
             foreach(GhostController ghosti in _ghost)
             {
-                ghosti.SetVulnerable(powPellet.duration);
+                ghosti.SetScared(powPellet.duration);
                 // add ghosts being scared off in the ghostController
             }
 
