@@ -223,10 +223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialBehavior: {fileID: 0}
   target: {fileID: 0}
-  bodySpriteRenderer:
-  - {fileID: 7135752089664690443}
-  - {fileID: 3620852683529102164}
-  - {fileID: 548806535663086198}
+  Body: {fileID: 7135752089664690443}
+  Blue: {fileID: 3620852683529102164}
+  White: {fileID: 548806535663086198}
 --- !u!114 &1908420676278470512
 MonoBehaviour:
   m_ObjectHideFlags: 0
