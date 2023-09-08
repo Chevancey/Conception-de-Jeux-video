@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.Tilemaps;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
 
     public GhostController[] _ghost;
@@ -31,10 +31,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StatNewGame();
-        foreach (GhostController ghosti in _ghost)
-        {
-            ghosti.SetGameManager(this);
-        }
     }
 
     void Update()
@@ -59,7 +55,7 @@ public class GameManager : MonoBehaviour
             _ghost[i].gameObject.SetActive(false);
         }
 
-        this.pacman.gameObject.SetActive(false);
+        pacman.gameObject.SetActive(false);
     }
 
     private void NewRound() 
@@ -129,7 +125,7 @@ public class GameManager : MonoBehaviour
             CancelInvoke();
             foreach(GhostController ghosti in _ghost)
             {
-                ghosti.SetVulnerable(powPellet.duration);
+                ghosti.SetScared(powPellet.duration);
                 // add ghosts being scared off in the ghostController
             }
 

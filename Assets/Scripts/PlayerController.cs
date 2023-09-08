@@ -59,5 +59,6 @@ public class PlayerController : MonoBehaviour
     {
         movement.ResetState();
         animatedSprite.Restart();
+		gameObject.SetActive(true);
     }
 }
