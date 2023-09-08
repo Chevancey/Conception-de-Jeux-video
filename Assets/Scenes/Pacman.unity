@@ -339,7 +339,13 @@ MonoBehaviour:
   - {fileID: 44605994}
   - {fileID: 1794261}
   pacman: {fileID: 1796566965}
+  boundsTilemap: {fileID: 669078988086559223}
   pellets: {fileID: 4444753392902881082}
+  audioClips:
+  - {fileID: 8300000, guid: 5bab4652e85f0be4ea19c7fde5f21025, type: 3}
+  - {fileID: 8300000, guid: 83a9172afe554444e912dab288028a1c, type: 3}
+  - {fileID: 8300000, guid: fd36ed4e79f54284e8e45f6d21fb5929, type: 3}
+  music: {fileID: 1553774446}
 --- !u!4 &275999391
 Transform:
   m_ObjectHideFlags: 0
@@ -1094,6 +1100,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2209029144075777513, guid: 6a77a9825dd9df74594bc0918b5f8014, type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2209029144075777513, guid: 6a77a9825dd9df74594bc0918b5f8014, type: 3}
+      propertyPath: obstacleLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 2407515715046072544, guid: 6a77a9825dd9df74594bc0918b5f8014, type: 3}
       propertyPath: m_Name
       value: Ghost_Inky
@@ -1282,7 +1296,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f8f2ab5881c3e9949bf4ffe9525a0fb7, type: 3}
   - {fileID: 21300000, guid: 1f9604f5749fde646a59a72c9ee1cd3a, type: 3}
   - {fileID: 21300000, guid: e3b83262a412c74408dba5cbe89f43f5, type: 3}
+  dyingSprites: []
   stepWait: 0.125
+  dyingStepWait: 0.2
   loop: 1
 --- !u!58 &1796566960
 CircleCollider2D:
@@ -8108,6 +8124,10 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 568
     m_Data: {r: 1, g: 1, b: 1, a: 1}
+  - m_RefCount: 0
+    m_Data: {r: 8.5863e-41, g: 8.5863e-41, b: 8.5863e-41, a: 8.5863e-41}
+  - m_RefCount: 0
+    m_Data: {r: 8.5863e-41, g: 8.5863e-41, b: 8.5863e-41, a: 8.5863e-41}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10750,7 +10770,7 @@ Transform:
   m_GameObject: {fileID: 2892309495648576324}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

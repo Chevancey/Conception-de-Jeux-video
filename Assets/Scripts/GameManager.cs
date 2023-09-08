@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.Tilemaps;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -14,11 +15,18 @@ public class GameManager : Singleton<GameManager>
 
     public PlayerController pacman;
 
+    [SerializeField] private Tilemap boundsTilemap;
+
     public Transform pellets;
+
+    [SerializeField] private AudioClip[] audioClips;
+    [SerializeField] private AudioSource music;
 
     public int currentScore { get; private set; }
     public int currentLives { get; private set; }
-    public int pointMultiplier { get; private set; } = 2;
+    public int pointMultiplier { get; private set; } = 1;
+
+    private float waitForReset = 4.0f;
 
     void Start()
     {
@@ -62,11 +70,16 @@ public class GameManager : Singleton<GameManager>
 
     private void ResetState() 
     {
+        music.clip = audioClips[0];
+        music.loop = true;
+        music.Play();
         for (int i = 0; i < ghost.Length; i++)
         {
+            _ghost[i].gameObject.SetActive(true);
             _ghost[i].ResetState();
         }
 
+        pacman.gameObject.SetActive(true);
         pacman.ResetState();
     }
 
@@ -82,7 +95,8 @@ public class GameManager : Singleton<GameManager>
 
     public void GhostDeath(GhostController ghost) 
     {
-        SetScore(currentScore + ghost.points);
+        SetScore(currentScore + ghost.points * pointMultiplier);
+        pointMultiplier *= 2;
     }
 
     private void ResetMultiplier() 
@@ -99,17 +113,38 @@ public class GameManager : Singleton<GameManager>
         if (HasEatenAll()) 
         {
             pacman.gameObject.SetActive(false);
-            Invoke(nameof(ResetState), 3.0f);
+            Invoke(nameof(NewRound), waitForReset);
         }
     }
 
     public void PowPelletEaten(PowPellet powPellet)
     {
         PelletEaten(powPellet);
-        CancelInvoke();
-        Invoke(nameof(ResetMultiplier), powPellet.duration);
-        
-        // add ghost being scared off
+        if (!HasEatenAll())
+        {
+            CancelInvoke();
+            foreach(GhostController ghosti in _ghost)
+            {
+                ghosti.SetScared(powPellet.duration);
+                // add ghosts being scared off in the ghostController
+            }
+
+            music.clip = audioClips[1];
+            music.Play();
+            pacman.CanEatGhost();
+            boundsTilemap.color = Color.red;
+
+            Invoke(nameof(EndPoweredState), powPellet.duration);
+        }
+    }
+
+    public void EndPoweredState()
+    {
+        music.clip = audioClips[0];
+        music.Play();
+        pacman.CannotEatGhost();
+        boundsTilemap.color = Color.white;
+        ResetMultiplier();
     }
 
     private bool HasEatenAll() 
@@ -127,13 +162,21 @@ public class GameManager : Singleton<GameManager>
 
     public void PlayerDeath()
     {
-        pacman.gameObject.SetActive(false);
+        for (int i = 0; i < ghost.Length; i++)
+        {
+            _ghost[i].gameObject.SetActive(false);
+        }
+
+        pacman.Dying();
+        music.clip = audioClips[2];
+        music.loop = false;
+        music.Play();
 
         SetLives(currentLives - 1);
 
         if (currentLives > 0)
         {
-            Invoke(nameof(ResetState), 3.0f);
+            Invoke(nameof(ResetState), waitForReset);
         }
         else 
         {
