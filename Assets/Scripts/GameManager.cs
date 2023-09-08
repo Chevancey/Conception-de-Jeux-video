@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     }
 
     public PlayerController pacman;
-    private SpriteRenderer pacmanRenderer;
 
     [SerializeField] private Tilemap boundsTilemap;
 
@@ -27,10 +26,11 @@ public class GameManager : MonoBehaviour
     public int currentLives { get; private set; }
     public int pointMultiplier { get; private set; } = 1;
 
+    private float waitForReset = 4.0f;
+
     void Start()
     {
         StatNewGame();
-        pacmanRenderer = pacman.gameObject.GetComponent<SpriteRenderer>();
         foreach (GhostController ghosti in _ghost)
         {
             ghosti.gameManager = this;
@@ -74,12 +74,17 @@ public class GameManager : MonoBehaviour
 
     private void ResetState() 
     {
+        music.clip = audioClips[0];
+        music.loop = true;
+        music.Play();
         for (int i = 0; i < ghost.Length; i++)
         {
             _ghost[i].gameObject.SetActive(true);
+            _ghost[i].ResetState();
         }
 
         pacman.gameObject.SetActive(true);
+        pacman.ResetState();
     }
 
     private void SetScore(int score) 
@@ -112,7 +117,7 @@ public class GameManager : MonoBehaviour
         if (HasEatenAll()) 
         {
             pacman.gameObject.SetActive(false);
-            Invoke(nameof(NewRound), 3.0f);
+            Invoke(nameof(NewRound), waitForReset);
         }
     }
 
@@ -130,7 +135,7 @@ public class GameManager : MonoBehaviour
 
             music.clip = audioClips[1];
             music.Play();
-            pacmanRenderer.color = Color.green;
+            pacman.CanEatGhost();
             boundsTilemap.color = Color.red;
 
             Invoke(nameof(EndPoweredState), powPellet.duration);
@@ -141,7 +146,7 @@ public class GameManager : MonoBehaviour
     {
         music.clip = audioClips[0];
         music.Play();
-        pacmanRenderer.color = Color.white;
+        pacman.CannotEatGhost();
         boundsTilemap.color = Color.white;
         ResetMultiplier();
     }
@@ -161,13 +166,16 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDeath()
     {
-        pacman.gameObject.SetActive(false);
+        pacman.Dying();
+        music.clip = audioClips[2];
+        music.loop = false;
+        music.Play();
 
         SetLives(currentLives - 1);
 
         if (currentLives > 0)
         {
-            Invoke(nameof(ResetState), 3.0f);
+            Invoke(nameof(ResetState), waitForReset);
         }
         else 
         {

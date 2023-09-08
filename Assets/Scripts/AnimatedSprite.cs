@@ -10,8 +10,10 @@ public class AnimatedSprite : MonoBehaviour
 
     public SpriteRenderer spriteRenderer { get; private set; }
     public Sprite[] sprites;
+    [SerializeField] private Sprite[] dyingSprites;
 
-    public float stepWait = 0.25f;
+    public float stepWait = 0.125f;
+    public float dyingStepWait = 0.2f;
     public int animationFrame { get; private set; }
     public bool loop = true;
 
@@ -44,10 +46,36 @@ public class AnimatedSprite : MonoBehaviour
         }
     }
 
+    private void DyingFrame()
+    {
+        if (!spriteRenderer.enabled)
+        {
+            return;
+        }
+        animationFrame++;
+
+        if (animationFrame >= 0 && animationFrame < dyingSprites.Length)
+        {
+            spriteRenderer.sprite = dyingSprites[animationFrame];
+        }
+        else if(animationFrame > dyingSprites.Length + 4)
+        {
+            spriteRenderer.sprite = null;
+        }
+    }
+
     public void Restart() 
     {
+        CancelInvoke();
         animationFrame = -1;
-        NextFrame();
+        InvokeRepeating(nameof(NextFrame), stepWait, stepWait);
+    }
+
+    public void Dying()
+    {
+        CancelInvoke();
+        animationFrame = -1;
+        InvokeRepeating(nameof(DyingFrame), dyingStepWait, dyingStepWait);
     }
 
 }
