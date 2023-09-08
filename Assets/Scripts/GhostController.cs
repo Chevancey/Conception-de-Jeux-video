@@ -9,7 +9,7 @@ public class GhostController : MonoBehaviour
     private int currentSprite = 0;
     private float timeBetweenFrames = 0.25f;
 
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     private Movement movement;
 
@@ -23,7 +23,7 @@ public class GhostController : MonoBehaviour
 
     void Start()
     {
-        movement = GetComponent<Movement>();
+        movement = gameObject.GetComponent<Movement>();
     }
 
 
@@ -88,6 +88,11 @@ public class GhostController : MonoBehaviour
     {
         movement.ResetState();
         //See how you can reset the behaviour of the ghosts
+    }
+
+    public void SetGameManager(GameManager manager)
+    {
+        gameManager = manager;
     }
 
 }
