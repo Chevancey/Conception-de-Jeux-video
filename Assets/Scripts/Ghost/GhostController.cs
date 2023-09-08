@@ -43,8 +43,8 @@ public class GhostController : MonoBehaviour
         movement.ResetState();
 
         scared.Disable();
-        scatter.Disable();
-        chase.Enable();
+        chase.Disable();
+        scatter.Enable();
 
         if (idle != initialBehavior) 
         {

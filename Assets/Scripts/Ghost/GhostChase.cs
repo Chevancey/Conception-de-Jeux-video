@@ -11,16 +11,12 @@ public class GhostChase : GhostBehavior
     {
         ghostController.scatter.Enable();
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         Node node = other.GetComponent<Node>();
 
         Dictionary<float, Vector2> distancesToTarget = new Dictionary<float, Vector2>();
-
-        if (this.enabled)
-        {
-            Debug.Log(true);
-        }
 
         if (node != null && this.enabled && !ghostController.scared.enabled)
         {
