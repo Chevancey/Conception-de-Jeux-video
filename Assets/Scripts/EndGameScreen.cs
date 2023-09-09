@@ -18,13 +18,11 @@ public class EndGameScreen : MonoBehaviour
         playAgain.onClick.AddListener(() =>
         {
             Cursor.lockState = CursorLockMode.Locked;
-            Time.timeScale = 1f;
             SceneManager.LoadScene("Pacman");
         });
         mainMenuButton.onClick.AddListener(() =>
         {
             Cursor.lockState = CursorLockMode.None;
-            Time.timeScale = 1f;
             SceneManager.LoadScene("Menu");
         });
     }
