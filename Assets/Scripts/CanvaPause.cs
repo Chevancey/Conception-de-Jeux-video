@@ -23,6 +23,7 @@ public class CanvaPause : MonoBehaviour
         mainMenuButton.onClick.AddListener(() =>
         {
             Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 1f;
             SceneManager.LoadScene("Menu");
         });
     }
