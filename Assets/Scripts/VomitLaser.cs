@@ -30,7 +30,7 @@ public class VomitLaser : MonoBehaviour
 
         if (hit.collider != null) 
         {
-            DrawVomit(_transform.position, hit.point + Vector2.right);
+            DrawVomit(_transform.position, hit.point);
         }
     }
 
