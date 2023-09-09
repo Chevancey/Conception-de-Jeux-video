@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.Tilemaps;
 
@@ -21,8 +22,6 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private AudioClip[] audioClips;
     [SerializeField] private AudioSource music;
-
-    [SerializeField] private GameObject endScreenCanva;
 
     public int currentScore { get; private set; }
     public int currentLives { get; private set; }
@@ -66,7 +65,7 @@ public class GameManager : Singleton<GameManager>
 
     void ShowEndScreen()
     {
-        endScreenCanva.SetActive(true);
+        SceneManager.LoadScene("HighScoreScene");
     }
 
     private void NewRound() 
