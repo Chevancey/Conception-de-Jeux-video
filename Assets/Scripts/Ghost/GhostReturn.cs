@@ -41,7 +41,7 @@ public class GhostReturn : GhostBehavior
                 this.ghostController.movement.SetDirection(distancesToTarget[distancesToTarget.Keys.OrderBy(k => k).Skip(1).First()]);
             }
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("StartNode")) 
+        else if (other.gameObject.layer == LayerMask.NameToLayer("GhostStartingPoint")) 
         {
             this.Disable();
         }
