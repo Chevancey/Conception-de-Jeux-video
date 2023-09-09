@@ -1,25 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GhostIdle : GhostBehavior
 {
-
-    public bool isVulnerable { get; private set; } = false;
-    //Use that to set the movement away from the player (ghosts are affraid)
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-
+        ghostController.movement.setMotionless();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        ghostController.Body.enabled = true;
+        if (ghostController.isDead)
+        {
+            ghostController.isDead = false;
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
+            int random = Random.Range(0, 2);
+            if (random == 0)
+            {
+                this.ghostController.movement.SetDirection(Vector2.right);
+            }
+            else
+            {
+                this.ghostController.movement.SetDirection(Vector2.left);
+            }
+        }
+        ghostController.scatter.Enable();
     }
 
 }

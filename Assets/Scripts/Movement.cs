@@ -78,9 +78,14 @@ public class Movement : MonoBehaviour
         this.enabled = true;
     }
 
-    public void PlayerDying()
+    public void setMotionless()
     {
         currentDirection = Vector2.zero;
+    }
+
+    public void SetSpeed(float speed) 
+    {
+        this.speed = speed;
     }
 
 }

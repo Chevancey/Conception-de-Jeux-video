@@ -2,15 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class GhostChase : GhostBehavior
+public class GhostReturn : GhostBehavior
 {
+    private void OnEnable()
+    {
+        gameObject.GetComponent<Collider2D>().isTrigger = true;
+    }
+
     private void OnDisable()
     {
-        if (!ghostController.scared.enabled)
-            ghostController.scatter.Enable();
+        ghostController.idle.Enable();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,13 +25,13 @@ public class GhostChase : GhostBehavior
 
         if (node != null && this.enabled && !ghostController.scared.enabled)
         {
-            foreach (Vector2 position in node.availableDirections) 
+            foreach (Vector2 position in node.availableDirections)
             {
-                distancesToTarget.Add(Vector2.Distance(new Vector3 (position.x, position.y) + ghostController.transform.position, ghostController.target.position), position);
+                distancesToTarget.Add(Vector2.Distance(new Vector3(position.x, position.y) + ghostController.transform.position, GameManager.Instance.startTarget.position), position);
             }
-              
+
             Vector2 nextBestNode = distancesToTarget[distancesToTarget.Keys.Min()];
-           
+
             if(!(nextBestNode == -ghostController.movement.currentDirection))
             {
                 this.ghostController.movement.SetDirection(nextBestNode);
@@ -37,5 +41,12 @@ public class GhostChase : GhostBehavior
                 this.ghostController.movement.SetDirection(distancesToTarget[distancesToTarget.Keys.OrderBy(k => k).Skip(1).First()]);
             }
         }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("StartNode")) 
+        {
+            this.Disable();
+        }
+
+
     }
+
 }
