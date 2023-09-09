@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GhostChase : GhostBehavior
 {
+
+    private int returnCount = 5;
     private void OnDisable()
     {
         if (!ghostController.scared.enabled)
@@ -30,12 +33,16 @@ public class GhostChase : GhostBehavior
            
             if(!(nextBestNode == -ghostController.movement.currentDirection))
             {
-                this.ghostController.movement.SetDirection(nextBestNode);
+                returnCount--;
+                if(Random.Range(0, returnCount) == 0)
+                {
+                    this.ghostController.movement.SetDirection(nextBestNode);
+                    returnCount = 5;
+                    return;
+                }
+                
             }
-            else
-            {
                 this.ghostController.movement.SetDirection(distancesToTarget[distancesToTarget.Keys.OrderBy(k => k).Skip(1).First()]);
-            }
         }
     }
 }
