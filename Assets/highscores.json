@@ -1,0 +1,19 @@
+{
+    "highScoreItems": [
+        {
+            "score": 15000,
+            "name": "ABC",
+            "date": "08/09"
+        },
+        {
+            "score": 12000,
+            "name": "BCD",
+            "date": "08/09"
+        },
+        {
+            "score": 230,
+            "name": "DBZA",
+            "date": "08/09"
+        }
+    ]
+}

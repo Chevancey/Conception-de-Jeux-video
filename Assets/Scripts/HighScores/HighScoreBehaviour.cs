@@ -87,8 +87,8 @@ public class HighScoreBehaviour : MonoBehaviour
         HighscoreManager.HighScoreItem[] highscoresItems = HighscoreManager.Instance.ReadHighScores();
         List<HighscoreManager.HighScoreItem> highscoreList = new(highscoresItems);
         List<HighscoreManager.HighScoreItem> top8Scores;
-        if (highscoreList.Count > 8) {
-            top8Scores = highscoreList.GetRange(0,8);
+        if (highscoreList.Count > 5) {
+            top8Scores = highscoreList.GetRange(0,5);
         } else {
             top8Scores = highscoreList;
         }
