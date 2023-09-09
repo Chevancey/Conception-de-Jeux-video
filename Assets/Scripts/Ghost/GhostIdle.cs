@@ -13,6 +13,7 @@ public class GhostIdle : GhostBehavior
     {
         ghostController.movement.setMotionless();
     }
+
     private void OnDisable()
     {
         ghostController.Body.enabled = true;
