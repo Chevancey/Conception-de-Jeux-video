@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class GhostChase : GhostBehavior
 {
+    private int returnPatience = 5; // 1/Probability of changing direction if pacman tries to brain the AI
+
     private void OnDisable()
     {
         if (!ghostController.scared.enabled)
@@ -30,12 +32,24 @@ public class GhostChase : GhostBehavior
            
             if(!(nextBestNode == -ghostController.movement.currentDirection))
             {
-                this.ghostController.movement.SetDirection(nextBestNode);
+                returnPatience--;
+                if(UnityEngine.Random.Range(0, returnPatience) == 0)
+                {
+                    this.ghostController.movement.SetDirection(nextBestNode);
+                    returnPatience = 5;
+                }
+                else
+                {
+                    this.ghostController.movement.SetDirection(distancesToTarget[distancesToTarget.Keys.OrderBy(k => k).Skip(1).First()]);
+                }
+                
             }
             else
             {
+                returnPatience = 5;
                 this.ghostController.movement.SetDirection(distancesToTarget[distancesToTarget.Keys.OrderBy(k => k).Skip(1).First()]);
             }
+                
         }
     }
 }
