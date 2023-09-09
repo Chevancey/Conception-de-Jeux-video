@@ -28,7 +28,14 @@ public class GhostChase : GhostBehavior
               
             Vector2 nextBestNode = distancesToTarget[distancesToTarget.Keys.Min()];
            
-            this.ghostController.movement.SetDirection(nextBestNode);
+            if(!(nextBestNode == -ghostController.movement.currentDirection))
+            {
+                this.ghostController.movement.SetDirection(nextBestNode);
+            }
+            else
+            {
+                this.ghostController.movement.SetDirection(distancesToTarget[distancesToTarget.Keys.OrderBy(k => k).Skip(1).First()]);
+            }
         }
     }
 }

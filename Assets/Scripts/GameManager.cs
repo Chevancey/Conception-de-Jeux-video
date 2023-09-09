@@ -115,6 +115,15 @@ public class GameManager : Singleton<GameManager>
         if (HasEatenAll()) 
         {
             pacman.gameObject.SetActive(false);
+            foreach (GhostController ghost in _ghost)
+            {
+                    ghost.gameObject.SetActive(false);
+            }
+            if(boundsTilemap.color == Color.red)
+            {
+                CancelInvoke();
+                EndPoweredState();
+            }
             Invoke(nameof(NewRound), waitForReset);
         }
     }

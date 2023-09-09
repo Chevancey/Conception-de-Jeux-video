@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer pacmanRenderer;
     private AnimatedSprite animatedSprite;
 
+    private bool isDying = false;
+
     void Awake()
     {
         movement = GetComponent<Movement>();
@@ -20,19 +22,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (!isDying && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             movement.SetDirection(Vector2.up);
         }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        else if (!isDying && (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)))
         {
             movement.SetDirection(Vector2.down);
         }
-        else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        else if(!isDying && (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)))
         {
             movement.SetDirection(Vector2.right);
         }
-        else if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        else if(!isDying && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)))
         {
             movement.SetDirection(Vector2.left);
         }
@@ -51,7 +53,8 @@ public class PlayerController : MonoBehaviour
     }
     public void Dying()
     {
-        movement.PlayerDying();
+        isDying = true;
+        movement.setMotionless();
         animatedSprite.Dying();
     }
 
@@ -59,6 +62,7 @@ public class PlayerController : MonoBehaviour
     {
         movement.ResetState();
         animatedSprite.Restart();
+        isDying = false;
 		gameObject.SetActive(true);
     }
 }

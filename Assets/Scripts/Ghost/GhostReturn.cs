@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +7,13 @@ using UnityEngine;
 
 public class GhostReturn : GhostBehavior
 {
+    private void OnEnable()
+    {
+        gameObject.GetComponent<Collider2D>().isTrigger = true;
+    }
+
     private void OnDisable()
     {
-        ghostController.isDead = false;
-
         ghostController.idle.Enable();
     }
 
@@ -28,7 +32,14 @@ public class GhostReturn : GhostBehavior
 
             Vector2 nextBestNode = distancesToTarget[distancesToTarget.Keys.Min()];
 
-            this.ghostController.movement.SetDirection(nextBestNode);
+            if(!(nextBestNode == -ghostController.movement.currentDirection))
+            {
+                this.ghostController.movement.SetDirection(nextBestNode);
+            }
+            else
+            {
+                this.ghostController.movement.SetDirection(distancesToTarget[distancesToTarget.Keys.OrderBy(k => k).Skip(1).First()]);
+            }
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("StartNode")) 
         {

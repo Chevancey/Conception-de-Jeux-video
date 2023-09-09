@@ -15,7 +15,7 @@ public class GhostScared : GhostBehavior
 
     private void OnDisable()
     {
-        if (!ghostController.idle.enabled)
+        if (!ghostController.returnBehavior.enabled)
             ghostController.scatter.Enable();
 
         ghostController.movement.SetSpeed(7f);

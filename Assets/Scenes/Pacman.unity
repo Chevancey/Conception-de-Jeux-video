@@ -155,7 +155,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4489874095403392164, guid: cd93d8fa3cc7a164c9304a383ec8af89, type: 3}
       propertyPath: setDuration
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4651728085078639215, guid: cd93d8fa3cc7a164c9304a383ec8af89, type: 3}
       propertyPath: m_Enabled
