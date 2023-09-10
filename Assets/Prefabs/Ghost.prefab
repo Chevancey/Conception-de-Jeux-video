@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setDuration: 20
---- !u!114 &6907058685931718777
+--- !u!114 &8264889565322924567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,11 +325,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2719374806741160569}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1a3128c3149d004c940ad8f32f661c5, type: 3}
+  m_Script: {fileID: 11500000, guid: ab08ddf2f180cd24698b1ff480393e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setDuration: 0
---- !u!114 &7779595925926242994
+  setDuration: 5
+--- !u!114 &-363725395420555918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

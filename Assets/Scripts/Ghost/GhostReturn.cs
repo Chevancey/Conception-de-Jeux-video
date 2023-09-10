@@ -14,7 +14,7 @@ public class GhostReturn : GhostBehavior
 
     private void OnDisable()
     {
-        ghostController.idle.Enable();
+        ghostController.nesting.Enable();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
