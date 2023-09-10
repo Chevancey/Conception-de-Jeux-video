@@ -16,8 +16,13 @@ public class VomitLaser : MonoBehaviour
 
     [SerializeField] private float shotTime = 0.5f;
 
+    [SerializeField]
+    private AudioClip[] audioClips;
+
     private void OnEnable()
     {
+        SoundManager.Instance?.playClipAtPosition(transform.position, audioClips[0]);
+        SoundManager.Instance?.playClipAtPosition(transform.position, audioClips[1]);
         _lineRenderer = GetComponent<LineRenderer>();
         Invoke("StopShooting", shotTime);
     }
@@ -41,6 +46,7 @@ public class VomitLaser : MonoBehaviour
 
     void ShootVomit() 
     {
+
         RaycastHit2D hitObstacle = Physics2D.Raycast(transform.position, transform.right, float.PositiveInfinity, layerMaskObstacle);
 
         if (hitObstacle.collider != null)

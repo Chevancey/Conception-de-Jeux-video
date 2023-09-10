@@ -168,9 +168,9 @@ public class GameManager : Singleton<GameManager>
 
     public void CherryEaten(Cherry cherry)
     {
-        cherrySpawn.SetSpwanable();
-        pacman.CanShoot();
         Destroy(cherry.gameObject);
+        pacman.CanShoot();
+        cherrySpawn.SetSpwanable();
     }
 
     public void EndPoweredState()
