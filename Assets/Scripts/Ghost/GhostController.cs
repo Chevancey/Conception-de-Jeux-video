@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GhostController : MonoBehaviour
@@ -11,11 +12,11 @@ public class GhostController : MonoBehaviour
     public GhostScared scared { get; private set; }
     public GhostScatter scatter { get; private set; }
     public GhostReturn returnBehavior { get; private set; }
-    //TODO
+    public GhostLeaving leaving { get; private set; }
+    public GhostNesting nesting { get; private set; }
     public bool isDead = false;
-    //Remplacer ça par un script qui renvoie le fantome à la base
 
-    public GhostBehavior initialBehavior;
+    public GhostBehavior initialBehavior = null;
 
     public Transform target;
 
@@ -34,13 +35,15 @@ public class GhostController : MonoBehaviour
         scared = GetComponent<GhostScared>();
         scatter = GetComponent<GhostScatter>();
         returnBehavior = GetComponent<GhostReturn>();
+        leaving = GetComponent<GhostLeaving>();
+        nesting = GetComponent<GhostNesting>();
 
         //Debug.Log(initialBehavior == GetComponent <GhostScatter>());
     }
 
     private void Start() 
     {
-        ResetState();
+        //ResetState();
     }
 
     public void ResetState() 
@@ -48,19 +51,14 @@ public class GhostController : MonoBehaviour
         gameObject.SetActive(true);
         movement.ResetState();
 
-        scared.Disable();
         chase.Disable();
-        scatter.Enable();
+        scared.Disable();
+        scatter.Disable();
+        returnBehavior.Disable();
+        leaving.Disable();
+        nesting.Disable();
+        idle.Enable();
 
-        if (idle != initialBehavior) 
-        {
-            idle.Disable();
-        }
-
-        if (initialBehavior != null)
-        {
-            initialBehavior.Enable();
-        }
     }
 
     public void SetScared(float duration)
@@ -81,7 +79,6 @@ public class GhostController : MonoBehaviour
     {
         CancelInvoke();
 
-        Body.enabled = true;
         Blue.enabled = false;
         White.enabled = false;
 
@@ -90,7 +87,6 @@ public class GhostController : MonoBehaviour
 
     private void SoonNotScared()
     {
-        Body.enabled = false;
         Blue.enabled = false;
         White.enabled = true;
     }
@@ -105,12 +101,10 @@ public class GhostController : MonoBehaviour
                 {
                     isDead = true;
 
-                    returnBehavior.enabled = true;
+                    returnBehavior.Enable();
                     NotScared();
 
                     Body.enabled = false;
-                    Blue.enabled = false;
-                    White.enabled = false;
 
                     GameManager.Instance.GhostDeath(this);
 

@@ -34,6 +34,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        Debug.Log(startTarget.position);
         StatNewGame();
     }
 
@@ -58,8 +59,6 @@ public class GameManager : Singleton<GameManager>
         {
             _ghost[i].gameObject.SetActive(false);
         }
-
-        pacman.gameObject.SetActive(false);
 
         Invoke(nameof(ShowEndScreen), waitForReset);
     }

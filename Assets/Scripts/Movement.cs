@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.XR;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
 public class Movement : MonoBehaviour
 {
+    public UnityEvent<Vector2> directionChanged;
     public Rigidbody2D myRigidbody { get; private set; }
 
     [SerializeField]
@@ -59,6 +61,7 @@ public class Movement : MonoBehaviour
         {
             nextDirection = direction;
         }
+        directionChanged.Invoke(currentDirection);
     }
 
     public bool isOccupide(Vector2 direction)
