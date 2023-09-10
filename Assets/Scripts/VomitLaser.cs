@@ -14,15 +14,30 @@ public class VomitLaser : MonoBehaviour
     public LayerMask layerMaskObstacle;
     public LayerMask layerMaskEnemies;
 
-    void Awake()
+    [SerializeField] private float shotTime = 0.5f;
+
+    private void OnEnable()
     {
-        _lineRenderer = GetComponent<LineRenderer>();   
+        _lineRenderer = GetComponent<LineRenderer>();
+        Invoke("StopShooting", shotTime);
     }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
+    }
+
 
     private void Update()
     {
         ShootVomit();
     }
+
+    private void StopShooting()
+    {
+        gameObject.SetActive(false);
+    }
+
 
     void ShootVomit() 
     {
@@ -42,7 +57,7 @@ public class VomitLaser : MonoBehaviour
                 {
                     GhostController ghostController = hit.collider.gameObject.GetComponent<GhostController>();
 
-                    if (ghostController != null && !ghostController.isDead && ghostController.scared.enabled)
+                    if (ghostController != null && !ghostController.isDead)
                     {
                         ghostController.isDead = true;
 

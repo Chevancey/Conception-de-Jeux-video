@@ -22,23 +22,28 @@ public class CherrySpawn : MonoBehaviour
 
     private void Update()
     {
-        if (spawnable)
+        if (spawnable && !GameManager.Instance.pacman.canShoot)
         {
-            Wait();
             spawnable = false;
+            Wait();
+            
         }
     }
 
     private void CherrySpawning()
     {
-        int rand = Random.Range(0, childTransforms.Length);
+        int rand = Random.Range(1, childTransforms.Length);
 
         Instantiate(cherry, childTransforms[rand]);
-        spawnable = true;
     }
 
     private void Wait() 
     {
-        Invoke(nameof(CherrySpawn), timeToSpawn);
+        Invoke(nameof(CherrySpawning), timeToSpawn);
+    }
+
+    public void SetSpwanable()
+    {
+        spawnable = true;
     }
 }

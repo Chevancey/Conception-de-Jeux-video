@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.Tilemaps;
@@ -31,6 +32,8 @@ public class GameManager : Singleton<GameManager>
     private float waitForReset = 4.0f;
 
     public Transform startTarget;
+
+    [SerializeField] private CherrySpawn cherrySpawn;
 
     void Start()
     {
@@ -161,6 +164,13 @@ public class GameManager : Singleton<GameManager>
 
             Invoke(nameof(EndPoweredState), powPellet.duration);
         }
+    }
+
+    public void CherryEaten(Cherry cherry)
+    {
+        cherrySpawn.SetSpwanable();
+        pacman.CanShoot();
+        Destroy(cherry.gameObject);
     }
 
     public void EndPoweredState()
