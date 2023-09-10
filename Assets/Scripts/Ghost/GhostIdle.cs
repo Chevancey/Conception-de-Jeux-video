@@ -16,7 +16,7 @@ public class GhostIdle : GhostBehavior
 
     private void OnDisable()
     {
-        ghostController.leaving.Enable();
+        ghostController.leaving.enabled = true; ;
     }
 
 }

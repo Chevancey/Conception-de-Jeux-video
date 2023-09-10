@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
 
     private bool isDying = false;
 
+    [SerializeField] private VomitLaser vomitLaser;
+    public bool canShoot = false;
+
     void Awake()
     {
         movement = GetComponent<Movement>();
@@ -38,6 +41,11 @@ public class PlayerController : MonoBehaviour
         {
             movement.SetDirection(Vector2.left);
         }
+        if(!isDying && canShoot && Input.GetKeyDown(KeyCode.Space))
+        {
+            canShoot = false;
+            vomitLaser.gameObject.SetActive(true);
+        }
 
         float angle = Mathf.Atan2(movement.currentDirection.y, movement.currentDirection.x);
         transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
@@ -51,6 +59,11 @@ public class PlayerController : MonoBehaviour
     {
         pacmanRenderer.color = Color.white;
     }
+    public void CanShoot()
+    {
+        canShoot = true;
+    }
+
     public void Dying()
     {
         isDying = true;

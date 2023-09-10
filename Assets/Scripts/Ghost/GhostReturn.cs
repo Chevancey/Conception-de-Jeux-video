@@ -14,7 +14,7 @@ public class GhostReturn : GhostBehavior
 
     private void OnDisable()
     {
-        ghostController.nesting.Enable();
+        ghostController.nesting.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -23,7 +23,7 @@ public class GhostReturn : GhostBehavior
 
         Dictionary<float, Vector2> distancesToTarget = new Dictionary<float, Vector2>();
 
-        if (node != null && this.enabled && !ghostController.scared.enabled)
+        if (node != null && this.enabled)
         {
             foreach (Vector2 position in node.availableDirections)
             {
@@ -41,7 +41,7 @@ public class GhostReturn : GhostBehavior
                 this.ghostController.movement.SetDirection(distancesToTarget[distancesToTarget.Keys.OrderBy(k => k).Skip(1).First()]);
             }
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("GhostStartingPoint")) 
+        else if (other.gameObject.layer == LayerMask.NameToLayer("GhostStartingPoint") && this.enabled) 
         {
             this.Disable();
         }

@@ -24,10 +24,10 @@ public class GhostNesting : GhostBehavior
     private void Update()
     {
         float distance = Vector2.Distance(transform.position, ghostController.movement.startPosition);
-        if (distance < 0.1)
+        if (distance < 0.5)
         {
             ghostController.movement.setMotionless();
-            transform.position = ghostController.movement.startPosition;
+            transform.position = (Vector2)ghostController.movement.startPosition;
             this.Disable();
         }
     }

@@ -8,6 +8,6 @@ public class PowPellet : Pellet
 
     protected override void Eat()
     {
-        FindObjectOfType<GameManager>().PowPelletEaten(this);
+        GameManager.Instance.PowPelletEaten(this);
     }
 }

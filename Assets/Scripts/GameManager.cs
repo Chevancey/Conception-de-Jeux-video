@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,10 +33,15 @@ public class GameManager : Singleton<GameManager>
 
     public Transform startTarget;
 
+    [SerializeField] private CherrySpawn cherrySpawn;
+
     void Start()
     {
-        Debug.Log(startTarget.position);
         StatNewGame();
+        for (int i = 0; i < ghost.Length; i++)
+        {
+            _ghost[i].target = pacman.transform;
+        }
     }
 
     void Update()
@@ -65,6 +71,7 @@ public class GameManager : Singleton<GameManager>
 
     void ShowEndScreen()
     {
+        PlayerPrefs.SetInt(scoreKey, currentScore);
         SceneManager.LoadScene("HighScoreScene");
     }
 
@@ -174,6 +181,13 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void CherryEaten(Cherry cherry)
+    {
+        Destroy(cherry.gameObject);
+        pacman.CanShoot();
+        cherrySpawn.SetSpwanable();
+    }
+
     public void EndPoweredState()
     {
         music.clip = audioClips[0];
@@ -220,4 +234,5 @@ public class GameManager : Singleton<GameManager>
         }
     }
     private delegate void FunctionAfterSound();
+    private readonly string scoreKey = "score";
 }

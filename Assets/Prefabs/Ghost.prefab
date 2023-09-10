@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 3828507641113729795}
   - component: {fileID: -363725395420555918}
   - component: {fileID: 8264889565322924567}
-  - component: {fileID: -2621784450009599948}
+  - component: {fileID: 7777639804781443681}
   m_Layer: 7
   m_Name: Ghost
   m_TagString: Untagged
@@ -346,8 +346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab08ddf2f180cd24698b1ff480393e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setDuration: 5
---- !u!114 &-2621784450009599948
+  setDuration: 0
+--- !u!114 &7777639804781443681
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

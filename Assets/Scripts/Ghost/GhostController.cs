@@ -55,8 +55,8 @@ public class GhostController : MonoBehaviour
         scared.Disable();
         scatter.Disable();
         returnBehavior.Disable();
-        leaving.Disable();
-        nesting.Disable();
+        leaving.enabled = false;
+        nesting.enabled = false;
         idle.Enable();
 
     }
@@ -75,12 +75,13 @@ public class GhostController : MonoBehaviour
         Invoke(nameof(SoonNotScared), duration - 3);
     }
 
-    private void NotScared()
+    public void NotScared()
     {
         CancelInvoke();
 
         Blue.enabled = false;
         White.enabled = false;
+        Body.enabled = true;
 
         scared.Disable();
     }
@@ -101,7 +102,7 @@ public class GhostController : MonoBehaviour
                 {
                     isDead = true;
 
-                    returnBehavior.Enable();
+                    returnBehavior.enabled = true;
                     NotScared();
 
                     Body.enabled = false;
