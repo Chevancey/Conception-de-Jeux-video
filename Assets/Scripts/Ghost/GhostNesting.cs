@@ -23,9 +23,6 @@ public class GhostNesting : GhostBehavior
 
     private void Update()
     {
-        Debug.Log(transform.position);
-        Debug.Log("Pute");
-        Debug.Log(ghostController.movement.startPosition);
         float distance = Vector2.Distance(transform.position, ghostController.movement.startPosition);
         if (distance < 0.5)
         {
