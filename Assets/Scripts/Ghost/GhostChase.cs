@@ -17,39 +17,43 @@ public class GhostChase : GhostBehavior
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(gameObject.name);
+        Debug.Log(other);
+
         Node node = other.GetComponent<Node>();
 
         Dictionary<float, Vector2> distancesToTarget = new Dictionary<float, Vector2>();
 
         if (node != null && this.enabled && !ghostController.scared.enabled)
         {
-            foreach (Vector2 position in node.availableDirections) 
+            Debug.Log("if");
+            foreach (Vector2 direction in node.availableDirections) 
             {
-                distancesToTarget.Add(Vector2.Distance(new Vector3 (position.x, position.y) + ghostController.transform.position, ghostController.target.position), position);
+                distancesToTarget.Add(Vector2.Distance(new Vector3 (direction.x, direction.y) + ghostController.transform.position, ghostController.target.position), direction);
             }
               
             Vector2 nextBestNode = distancesToTarget[distancesToTarget.Keys.Min()];
            
-            if(!(nextBestNode == -ghostController.movement.currentDirection))
+            if(nextBestNode == -ghostController.movement.currentDirection)
             {
                 returnPatience--;
                 if(UnityEngine.Random.Range(0, returnPatience) == 0)
                 {
-                    this.ghostController.movement.SetDirection(nextBestNode);
+                    this.ghostController.movement.SetDirection(distancesToTarget[distancesToTarget.Keys.OrderBy(k => k).Skip(1).First()]);
                     returnPatience = 5;
                 }
                 else
                 {
-                    this.ghostController.movement.SetDirection(distancesToTarget[distancesToTarget.Keys.OrderBy(k => k).Skip(1).First()]);
+                    this.ghostController.movement.SetDirection(nextBestNode);
                 }
                 
             }
             else
             {
-                returnPatience = 5;
-                this.ghostController.movement.SetDirection(distancesToTarget[distancesToTarget.Keys.OrderBy(k => k).Skip(1).First()]);
+                this.ghostController.movement.SetDirection(nextBestNode);
             }
                 
         }
+        Debug.Log("sors");
     }
 }
