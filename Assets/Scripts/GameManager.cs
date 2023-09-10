@@ -65,6 +65,7 @@ public class GameManager : Singleton<GameManager>
 
     void ShowEndScreen()
     {
+        PlayerPrefs.SetInt(scoreKey, currentScore);
         SceneManager.LoadScene("HighScoreScene");
     }
 
@@ -220,4 +221,5 @@ public class GameManager : Singleton<GameManager>
         }
     }
     private delegate void FunctionAfterSound();
+    private readonly string scoreKey = "score";
 }
