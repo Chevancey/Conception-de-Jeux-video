@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -33,6 +34,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        Debug.Log(startTarget.position);
         StatNewGame();
     }
 
@@ -48,7 +50,7 @@ public class GameManager : Singleton<GameManager>
     {
         SetScore(0);
         SetLives(3);
-        NewRound();
+        StartCoroutine(StartAfterSound(audioClips[3],NewRound));
     }
 
     private void GameOver() 
@@ -57,8 +59,6 @@ public class GameManager : Singleton<GameManager>
         {
             _ghost[i].gameObject.SetActive(false);
         }
-
-        pacman.gameObject.SetActive(false);
 
         Invoke(nameof(ShowEndScreen), waitForReset);
     }
@@ -76,6 +76,20 @@ public class GameManager : Singleton<GameManager>
         }
 
         ResetState();
+    }
+
+    private IEnumerator StartAfterSound(AudioClip sound,FunctionAfterSound func, float timeToWait=0) {
+        yield return new WaitForSeconds(timeToWait);
+        AudioClip previousSound = music.clip;
+        music.clip = sound;
+        music.loop = false;
+        music.Play();
+        Time.timeScale = 0;
+        while(music.isPlaying) {
+            yield return null;
+        }
+        Time.timeScale = 1;
+        func();
     }
 
     private void ResetState() 
@@ -132,7 +146,7 @@ public class GameManager : Singleton<GameManager>
                 CancelInvoke();
                 EndPoweredState();
             }
-            Invoke(nameof(NewRound), waitForReset);
+            StartCoroutine(StartAfterSound(audioClips[3],NewRound, waitForReset));
         }
     }
 
@@ -205,5 +219,5 @@ public class GameManager : Singleton<GameManager>
             GameOver();
         }
     }
-
+    private delegate void FunctionAfterSound();
 }
