@@ -2413,6 +2413,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930e686397199524b8f4715d0031fabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  directionChanged:
+    m_PersistentCalls:
+      m_Calls: []
   speed: 8
   speedMuliplier: 1
   initialDirection: {x: 1, y: 0}
@@ -3396,9 +3399,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79041c4955cf7854389e9b30a24e3f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
+  layerMaskObstacle:
     serializedVersion: 2
     m_Bits: 512
+  layerMaskEnemies:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!120 &2085240428
 LineRenderer:
   serializedVersion: 2
