@@ -22,7 +22,6 @@ public class CanvaPause : MonoBehaviour
         });
         mainMenuButton.onClick.AddListener(() =>
         {
-            Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 1f;
             SceneManager.LoadScene("Menu");
         });
@@ -54,13 +53,11 @@ public class CanvaPause : MonoBehaviour
     {
         music.Play();
         canvasPauseMenu.enabled = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void PauseGame()
     {
         music.Pause();
         canvasPauseMenu.enabled = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 }
