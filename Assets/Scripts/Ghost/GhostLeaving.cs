@@ -53,10 +53,10 @@ public class GhostLeaving : GhostBehavior
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("GhostStartingPoint"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("GhostStartingPoint") && this.enabled)
         {
             ghostController.movement.setMotionless();
-            transform.position = GameManager.Instance.startTarget.position;
+            transform.position = new Vector3(GameManager.Instance.startTarget.position.x, GameManager.Instance.startTarget.position.y, -1);
             this.Disable();
         }
     }

@@ -55,8 +55,8 @@ public class GhostController : MonoBehaviour
         scared.Disable();
         scatter.Disable();
         returnBehavior.Disable();
-        leaving.Disable();
-        nesting.Disable();
+        leaving.enabled = false;
+        nesting.enabled = false;
         idle.Enable();
 
     }
