@@ -40,6 +40,7 @@ public class VomitLaser : MonoBehaviour
 
     private void StopShooting()
     {
+        SoundManager.Instance?
         gameObject.SetActive(false);
     }
 
