@@ -80,7 +80,8 @@ public class GameManager : Singleton<GameManager>
         ResetState();
     }
 
-    private IEnumerator StartAfterSound(AudioClip sound,FunctionAfterSound func ) {
+    private IEnumerator StartAfterSound(AudioClip sound,FunctionAfterSound func, float timeToWait=0) {
+        yield return new WaitForSeconds(timeToWait);
         AudioClip previousSound = music.clip;
         music.clip = sound;
         music.loop = false;
@@ -147,7 +148,7 @@ public class GameManager : Singleton<GameManager>
                 CancelInvoke();
                 EndPoweredState();
             }
-            Invoke(nameof(NewRound), waitForReset);
+            StartCoroutine(StartAfterSound(audioClips[3],NewRound, waitForReset));
         }
     }
 
