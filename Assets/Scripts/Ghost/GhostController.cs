@@ -75,7 +75,7 @@ public class GhostController : MonoBehaviour
         Invoke(nameof(SoonNotScared), duration - 3);
     }
 
-    private void NotScared()
+    public void NotScared()
     {
         CancelInvoke();
 
