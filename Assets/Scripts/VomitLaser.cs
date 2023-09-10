@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UIElements;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class VomitLaser : MonoBehaviour
 {
     private LineRenderer _lineRenderer;
 
-    private Transform _transform;
+    private GhostController _ghostController;
 
-    public LayerMask layerMask;
+    public LayerMask layerMaskObstacle;
+    public LayerMask layerMaskEnemies;
 
     void Awake()
     {
-        _transform = GetComponent<Transform>();
         _lineRenderer = GetComponent<LineRenderer>();   
     }
 
@@ -23,15 +26,36 @@ public class VomitLaser : MonoBehaviour
 
     void ShootVomit() 
     {
+        RaycastHit2D hitObstacle = Physics2D.Raycast(transform.position, transform.right, float.PositiveInfinity, layerMaskObstacle);
 
-        RaycastHit2D hit = Physics2D.Raycast(_transform.position, transform.right, float.PositiveInfinity, layerMask);
-
-        Debug.DrawLine(_transform.position, hit.point);
-
-        if (hit.collider != null) 
+        if (hitObstacle.collider != null)
         {
-            DrawVomit(_transform.position, hit.point);
+            DrawVomit(transform.position, hitObstacle.point);
+
+            float distanceToObstacle = Vector2.Distance(transform.position, hitObstacle.point);
+
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.right, distanceToObstacle, layerMaskEnemies);
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider != null)
+                {
+                    GhostController ghostController = hit.collider.gameObject.GetComponent<GhostController>();
+
+                    if (ghostController != null && !ghostController.isDead && ghostController.scared.enabled)
+                    {
+                        ghostController.isDead = true;
+                        ghostController.returnBehavior.enabled = true;
+                        ghostController.NotScared();
+                        ghostController.Body.enabled = false;
+                        ghostController.Blue.enabled = false;
+                        ghostController.White.enabled = false;
+                        GameManager.Instance.GhostDeath(ghostController);
+                    }
+                }
+            }
         }
+
     }
 
     private void DrawVomit(Vector2 startPos, Vector2 endPos)
