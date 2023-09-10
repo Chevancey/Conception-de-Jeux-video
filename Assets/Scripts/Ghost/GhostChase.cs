@@ -17,8 +17,6 @@ public class GhostChase : GhostBehavior
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(gameObject.name);
-        Debug.Log(other);
 
         Node node = other.GetComponent<Node>();
 
@@ -26,7 +24,6 @@ public class GhostChase : GhostBehavior
 
         if (node != null && this.enabled && !ghostController.scared.enabled)
         {
-            Debug.Log("if");
             foreach (Vector2 direction in node.availableDirections) 
             {
                 distancesToTarget.Add(Vector2.Distance(new Vector3 (direction.x, direction.y) + ghostController.transform.position, ghostController.target.position), direction);
@@ -54,6 +51,5 @@ public class GhostChase : GhostBehavior
             }
                 
         }
-        Debug.Log("sors");
     }
 }

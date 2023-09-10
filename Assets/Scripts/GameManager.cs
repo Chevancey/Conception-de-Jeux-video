@@ -34,8 +34,11 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        Debug.Log(startTarget.position);
         StatNewGame();
+        for (int i = 0; i < ghost.Length; i++)
+        {
+            _ghost[i].target = pacman.transform;
+        }
     }
 
     void Update()

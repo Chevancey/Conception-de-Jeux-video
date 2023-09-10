@@ -81,6 +81,7 @@ public class GhostController : MonoBehaviour
 
         Blue.enabled = false;
         White.enabled = false;
+        Body.enabled = true;
 
         scared.Disable();
     }
@@ -101,7 +102,7 @@ public class GhostController : MonoBehaviour
                 {
                     isDead = true;
 
-                    returnBehavior.Enable();
+                    returnBehavior.enabled = true;
                     NotScared();
 
                     Body.enabled = false;

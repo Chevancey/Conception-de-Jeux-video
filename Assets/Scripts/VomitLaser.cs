@@ -45,11 +45,12 @@ public class VomitLaser : MonoBehaviour
                     if (ghostController != null && !ghostController.isDead && ghostController.scared.enabled)
                     {
                         ghostController.isDead = true;
+
                         ghostController.returnBehavior.enabled = true;
                         ghostController.NotScared();
+
                         ghostController.Body.enabled = false;
-                        ghostController.Blue.enabled = false;
-                        ghostController.White.enabled = false;
+
                         GameManager.Instance.GhostDeath(ghostController);
                     }
                 }
