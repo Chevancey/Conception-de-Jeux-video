@@ -16,22 +16,7 @@ public class GhostIdle : GhostBehavior
 
     private void OnDisable()
     {
-        ghostController.Body.enabled = true;
-        if (ghostController.isDead)
-        {
-            ghostController.isDead = false;
-            gameObject.GetComponent<Collider2D>().isTrigger = false;
-            int random = Random.Range(0, 2);
-            if (random == 0)
-            {
-                this.ghostController.movement.SetDirection(Vector2.right);
-            }
-            else
-            {
-                this.ghostController.movement.SetDirection(Vector2.left);
-            }
-        }
-        ghostController.scatter.Enable();
+        ghostController.leaving.Enable();
     }
 
 }
