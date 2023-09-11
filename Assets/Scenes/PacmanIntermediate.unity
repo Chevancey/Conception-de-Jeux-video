@@ -532,8 +532,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   easyDifficulty: 0
-  intermediateDifficulty: 0
-  hardDifficulty: 1
+  intermediateDifficulty: 1
+  hardDifficulty: 0
   Easy: {fileID: 11400000, guid: b6c898eca85aa32418962a08e8a4b1ba, type: 2}
   Intermediate: {fileID: 11400000, guid: 9bb62229fe47e5a43bba115de4fd1cfb, type: 2}
   Hard: {fileID: 11400000, guid: bdc32ed5d8449094a888f2da810de61c, type: 2}
