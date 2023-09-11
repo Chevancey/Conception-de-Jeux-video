@@ -42,6 +42,8 @@ public class GameManager : Singleton<GameManager>
     public int currentLives { get; private set; }
     public int pointMultiplier { get; private set; } = 1;
 
+    private bool isDead = false;
+
     private float waitForReset = 4.0f;
 
     public Transform startTarget;
@@ -110,7 +112,7 @@ public class GameManager : Singleton<GameManager>
 
     private void ResetState() 
     {
-
+        isDead = false;
         music.clip = audioClips[0];
         music.loop = true;
         music.Play();
@@ -232,29 +234,33 @@ public class GameManager : Singleton<GameManager>
 
     public void PlayerDeath()
     {
-        for (int i = 0; i < ghost.Length; i++)
+        if (!isDead)
         {
-            _ghost[i].gameObject.SetActive(false);
-        }
-        if (hardDifficulty)
-        {
-            _laserGhost.movement.setMotionless();
-        }
-        
-        pacman.Dying();
-        music.clip = audioClips[2];
-        music.loop = false;
-        music.Play();
+            isDead = true;
+            for (int i = 0; i < ghost.Length; i++)
+            {
+                _ghost[i].gameObject.SetActive(false);
+            }
+            if (hardDifficulty)
+            {
+                _laserGhost.movement.setMotionless();
+            }
 
-        SetLives(currentLives - 1);
+            pacman.Dying();
+            music.clip = audioClips[2];
+            music.loop = false;
+            music.Play();
 
-        if (currentLives > 0)
-        {
-            Invoke(nameof(ResetState), waitForReset);
-        }
-        else 
-        {
-            GameOver();
+            SetLives(currentLives - 1);
+
+            if (currentLives > 0)
+            {
+                Invoke(nameof(ResetState), waitForReset);
+            }
+            else
+            {
+                GameOver();
+            }
         }
     }
     private delegate void FunctionAfterSound();

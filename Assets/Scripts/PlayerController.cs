@@ -71,6 +71,11 @@ public class PlayerController : MonoBehaviour
         animatedSprite.Dying();
     }
 
+    public bool GetIsDying()
+    {
+        return isDying;
+    }
+
     public void ResetState()
     {
         movement.ResetState();
