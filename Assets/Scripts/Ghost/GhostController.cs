@@ -92,6 +92,11 @@ public class GhostController : MonoBehaviour
         White.enabled = true;
     }
 
+    public void ModifyBehaviourDuration(GhostBehavior behaviour, float duration)
+    {
+        behaviour.setDuration = duration;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) 

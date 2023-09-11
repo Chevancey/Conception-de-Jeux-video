@@ -531,14 +531,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 378559f795b77c54cbe1c295fae70c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  easyDifficulty: 0
+  easyDifficulty: 1
   intermediateDifficulty: 0
-  hardDifficulty: 1
+  hardDifficulty: 0
+  Easy: {fileID: 11400000, guid: b6c898eca85aa32418962a08e8a4b1ba, type: 2}
+  Intermediate: {fileID: 11400000, guid: 9bb62229fe47e5a43bba115de4fd1cfb, type: 2}
+  Hard: {fileID: 11400000, guid: bdc32ed5d8449094a888f2da810de61c, type: 2}
   _ghost:
   - {fileID: 1157479156}
+  - {fileID: 1794261}
   - {fileID: 2106942822}
   - {fileID: 44605994}
-  - {fileID: 1794261}
   _laserGhost: {fileID: 1536239338}
   pacman: {fileID: 986725170}
   boundsTilemap: {fileID: 669078988086559223}
@@ -14571,9 +14574,9 @@ SceneRoots:
   - {fileID: 275999391}
   - {fileID: 344294753}
   - {fileID: 11684197}
+  - {fileID: 1044252245}
   - {fileID: 1541402313}
   - {fileID: 578433285}
-  - {fileID: 1044252245}
   - {fileID: 709784127}
   - {fileID: 40718771}
   - {fileID: 1766989168}
