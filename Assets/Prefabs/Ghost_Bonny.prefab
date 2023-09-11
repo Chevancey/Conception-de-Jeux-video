@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 514884846402702251, guid: c30d9e3730978454c95f3bdf2fb81595, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 514884846402702251, guid: c30d9e3730978454c95f3bdf2fb81595, type: 3}
       propertyPath: m_LocalRotation.w
@@ -146,8 +146,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setDuration: 0
-  minShootingCoolDown: 10
-  maxShootingCoolDown: 25
+  layerMaskPacman:
+    serializedVersion: 2
+    m_Bits: 64
+  eyeMovement: {fileID: -5750715433785717717}
+  shootingCoolDown: 10
+  fullShotDuration: 2
+  mapSize: 32
+  laser: {fileID: 4017238176219963623}
 --- !u!212 &7016683860491953737 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4819391772068178126, guid: c30d9e3730978454c95f3bdf2fb81595, type: 3}
@@ -210,6 +216,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GhostFirePoint
       objectReference: {fileID: 0}
+    - target: {fileID: 3276524364681620717, guid: c554ce475418f02419b1609283473504, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4082211849053237497, guid: c554ce475418f02419b1609283473504, type: 3}
     m_RemovedGameObjects: []
@@ -219,6 +229,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4017238176219963623}
   m_SourcePrefab: {fileID: 100100000, guid: c554ce475418f02419b1609283473504, type: 3}
+--- !u!120 &1788789195514827614 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 6082288724169572560, guid: c554ce475418f02419b1609283473504, type: 3}
+  m_PrefabInstance: {fileID: 5529205473494569870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6455314058093182552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1526244161184902614, guid: c554ce475418f02419b1609283473504, type: 3}
@@ -241,13 +256,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d99b4123574eb4099f18cb10c69d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lineRenderer: {fileID: 1788789195514827614}
   layerMaskObstacle:
     serializedVersion: 2
     m_Bits: 512
   layerMaskPacman:
     serializedVersion: 2
     m_Bits: 64
-  shotTime: 0.5
+  preShotTime: 1.5
+  mapSize: 32
   audioClips:
   - {fileID: 8300000, guid: dc0da4b15d2ef7d4283b691bfbd3ffcb, type: 3}
   - {fileID: 8300000, guid: 3b747b7766343d64bb64e32a2d99504b, type: 3}

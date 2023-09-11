@@ -9,6 +9,9 @@ using UnityEngine.Tilemaps;
 
 public class GameManager : Singleton<GameManager>
 {
+    public bool easyDifficulty = true;
+    public bool intermediateDifficulty = false;
+    public bool hardDifficulty = false;
 
     public GhostController[] _ghost;
     public GhostController[] ghost
@@ -61,6 +64,7 @@ public class GameManager : Singleton<GameManager>
     {
         SetScore(0);
         SetLives(3);
+        SetupDifficulty();
         StartCoroutine(StartAfterSound(audioClips[3],NewRound));
     }
 
@@ -70,7 +74,10 @@ public class GameManager : Singleton<GameManager>
         {
             _ghost[i].gameObject.SetActive(false);
         }
-        _laserGhost.gameObject.SetActive(false);
+        if (hardDifficulty)
+        {
+            _laserGhost.gameObject.SetActive(false);
+        }
 
         Invoke(nameof(ShowEndScreen), waitForReset);
     }
@@ -115,8 +122,11 @@ public class GameManager : Singleton<GameManager>
             _ghost[i].gameObject.SetActive(true);
             _ghost[i].ResetState();
         }
-        _laserGhost.gameObject.SetActive(true);
-        _laserGhost.ResetState();
+        if (hardDifficulty)
+        {
+            _laserGhost.gameObject.SetActive(true);
+            _laserGhost.ResetState();
+        }
 
         pacman.gameObject.SetActive(true);
         pacman.ResetState();
@@ -156,7 +166,10 @@ public class GameManager : Singleton<GameManager>
             {
                 ghost.gameObject.SetActive(false);
             }
-            _laserGhost.gameObject.SetActive(false);
+            if (hardDifficulty)
+            {
+                _laserGhost.gameObject.SetActive(false);
+            }
 
             if (boundsTilemap.color == Color.red)
             {
@@ -226,8 +239,11 @@ public class GameManager : Singleton<GameManager>
         {
             _ghost[i].gameObject.SetActive(false);
         }
-        _laserGhost.gameObject.SetActive(false);
-
+        if (hardDifficulty)
+        {
+            _laserGhost.gameObject.SetActive(false);
+        }
+        
         pacman.Dying();
         music.clip = audioClips[2];
         music.loop = false;
@@ -246,4 +262,13 @@ public class GameManager : Singleton<GameManager>
     }
     private delegate void FunctionAfterSound();
     private readonly string scoreKey = "score";
+
+
+    private void SetupDifficulty()
+    {
+        if (hardDifficulty)
+        {
+            _laserGhost.gameObject.SetActive(true);
+        }
+    }
 }

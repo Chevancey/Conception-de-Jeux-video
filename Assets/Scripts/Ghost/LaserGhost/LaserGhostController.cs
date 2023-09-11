@@ -29,6 +29,7 @@ public class LaserGhostController : MonoBehaviour
         gameObject.SetActive(true);
         movement.ResetState();
 
+        scatter.enabled = false;
         scatter.enabled = true;
 
     }
