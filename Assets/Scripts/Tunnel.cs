@@ -7,10 +7,13 @@ public class Tunnel : MonoBehaviour
     public Transform connection;
     private void OnTriggerEnter2D(Collider2D other) 
     { 
-        Vector3 position = other.transform.position;
-        position.x = connection.position.x;
-        position.y = connection.position.y;
+        if(other.gameObject.layer != LayerMask.NameToLayer("LaserEnnemy"))
+        {
+            Vector3 position = other.transform.position;
+            position.x = connection.position.x;
+            position.y = connection.position.y;
 
-        other.transform.position = position;
+            other.transform.position = position;
+        }
     }
 }

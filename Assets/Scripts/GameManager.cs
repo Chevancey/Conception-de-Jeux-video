@@ -15,6 +15,11 @@ public class GameManager : Singleton<GameManager>
     {
         get => _ghost;
     }
+    public LaserGhostController _laserGhost;
+    public LaserGhostController laserGhost
+    {
+        get => _laserGhost;
+    }
 
     public PlayerController pacman;
 
@@ -65,6 +70,7 @@ public class GameManager : Singleton<GameManager>
         {
             _ghost[i].gameObject.SetActive(false);
         }
+        _laserGhost.gameObject.SetActive(false);
 
         Invoke(nameof(ShowEndScreen), waitForReset);
     }
@@ -109,6 +115,8 @@ public class GameManager : Singleton<GameManager>
             _ghost[i].gameObject.SetActive(true);
             _ghost[i].ResetState();
         }
+        _laserGhost.gameObject.SetActive(true);
+        _laserGhost.ResetState();
 
         pacman.gameObject.SetActive(true);
         pacman.ResetState();
@@ -146,9 +154,11 @@ public class GameManager : Singleton<GameManager>
             pacman.gameObject.SetActive(false);
             foreach (GhostController ghost in _ghost)
             {
-                    ghost.gameObject.SetActive(false);
+                ghost.gameObject.SetActive(false);
             }
-            if(boundsTilemap.color == Color.red)
+            _laserGhost.gameObject.SetActive(false);
+
+            if (boundsTilemap.color == Color.red)
             {
                 CancelInvoke();
                 EndPoweredState();
@@ -216,6 +226,7 @@ public class GameManager : Singleton<GameManager>
         {
             _ghost[i].gameObject.SetActive(false);
         }
+        _laserGhost.gameObject.SetActive(false);
 
         pacman.Dying();
         music.clip = audioClips[2];
