@@ -84,23 +84,27 @@ public class MainMenu : MonoBehaviour
     public void ShowHighscore()
     {
         //Show highscore
+        mainPanel.SetActive(false);
         highscoreWindow.SetActive(true);
 
     }
 
     public void Credits()
     {
+        mainPanel.SetActive(false);
         creditsWindow.SetActive(true);
     }
 
     public void CloseCredits()
     {
         creditsWindow.SetActive(false);
+        mainPanel.SetActive(true);
     }
 
     public void CloseHighscoreWindow()
     {
         highscoreWindow.SetActive(false);
+        mainPanel.SetActive(true);
     }
 
     public void QuitGame()
