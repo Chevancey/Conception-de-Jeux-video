@@ -59,14 +59,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    void Update()
-    {
-        if (currentLives <= 0 && Input.anyKeyDown) 
-        {
-            StartNewGame();
-        }
-    }
-
     private void StartNewGame() 
     {
         SetScore(0);
