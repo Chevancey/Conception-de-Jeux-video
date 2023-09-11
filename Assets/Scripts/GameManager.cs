@@ -152,7 +152,6 @@ public class GameManager : Singleton<GameManager>
 
         if (HasEatenAll()) 
         {
-            pacman.gameObject.SetActive(false);
             foreach (GhostController ghost in _ghost)
             {
                 ghost.gameObject.SetActive(false);
@@ -161,6 +160,8 @@ public class GameManager : Singleton<GameManager>
             {
                 _laserGhost.gameObject.SetActive(false);
             }
+
+            pacman.movement.setMotionless();
 
             if (boundsTilemap.color == Color.red)
             {

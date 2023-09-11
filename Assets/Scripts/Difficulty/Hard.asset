@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blinkyIdleScatterChase:
   - 1
-  - 8
-  - 14
+  - 6
+  - 16
   PinkyIdleScatterChase:
   - 4
-  - 12
-  - 16
-  InkyIdleScatterChase:
-  - 8
-  - 12
-  - 12
-  ClydeIdleScatterChase:
-  - 12
-  - 6
+  - 10
   - 18
+  InkyIdleScatterChase:
+  - 7
+  - 10
+  - 14
+  ClydeIdleScatterChase:
+  - 10
+  - 4
+  - 20
