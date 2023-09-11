@@ -204,7 +204,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void CherryEaten(Cherry cherry)
+    public void CherryEaten(CherryItem cherry)
     {
         Destroy(cherry.gameObject);
         pacman.CanShoot();
