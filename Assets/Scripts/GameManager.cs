@@ -234,7 +234,7 @@ public class GameManager : Singleton<GameManager>
     {
         for (int i = 0; i < ghost.Length; i++)
         {
-            _ghost[i].movement.setMotionless();
+            _ghost[i].gameObject.SetActive(false);
         }
         if (hardDifficulty)
         {
