@@ -150,7 +150,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   eyeMovement: {fileID: -5750715433785717717}
-  shootingCoolDown: 10
+  shootingCoolDown: 7
   fullShotDuration: 2
   mapSize: 32
   laser: {fileID: 4017238176219963623}
