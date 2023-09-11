@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Easy
   m_EditorClassIdentifier: 
   blinkyIdleScatterChase:
-  - 1
+  - 2
   - 12
   - 10
   PinkyIdleScatterChase:

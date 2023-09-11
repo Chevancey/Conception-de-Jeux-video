@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: Hard
   m_EditorClassIdentifier: 
   blinkyIdleScatterChase:
-  - 0
-  - 0
-  - 0
+  - 1
+  - 8
+  - 14
   PinkyIdleScatterChase:
-  - 0
-  - 0
-  - 0
-  InkyIdleScatterChase: []
-  ClydeIdleScatterChase: []
+  - 4
+  - 12
+  - 16
+  InkyIdleScatterChase:
+  - 8
+  - 12
+  - 12
+  ClydeIdleScatterChase:
+  - 12
+  - 6
+  - 18

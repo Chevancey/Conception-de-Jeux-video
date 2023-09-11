@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
@@ -12,6 +13,10 @@ public class GameManager : Singleton<GameManager>
     public bool easyDifficulty = true;
     public bool intermediateDifficulty = false;
     public bool hardDifficulty = false;
+
+    [SerializeField] private Difficulty Easy;
+    [SerializeField] private Difficulty Intermediate;
+    [SerializeField] private Difficulty Hard;
 
     public GhostController[] _ghost;
     public GhostController[] ghost
@@ -45,7 +50,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        StatNewGame();
+        StartNewGame();
         for (int i = 0; i < ghost.Length; i++)
         {
             _ghost[i].target = pacman.transform;
@@ -56,11 +61,11 @@ public class GameManager : Singleton<GameManager>
     {
         if (currentLives <= 0 && Input.anyKeyDown) 
         {
-            StatNewGame();
+            StartNewGame();
         }
     }
 
-    private void StatNewGame() 
+    private void StartNewGame() 
     {
         SetScore(0);
         SetLives(3);
@@ -266,9 +271,36 @@ public class GameManager : Singleton<GameManager>
 
     private void SetupDifficulty()
     {
+        List<List<float>> parameters = new List<List<float>>();
         if (hardDifficulty)
         {
+            parameters = new List<List<float>>() { Hard.blinkyIdleScatterChase, 
+                Hard.PinkyIdleScatterChase, Hard.InkyIdleScatterChase, Hard.ClydeIdleScatterChase };
             _laserGhost.gameObject.SetActive(true);
+        }
+        else if (intermediateDifficulty)
+        {
+            parameters = new List<List<float>>() { Intermediate.blinkyIdleScatterChase,
+                Intermediate.PinkyIdleScatterChase, Intermediate.InkyIdleScatterChase,
+            Intermediate.ClydeIdleScatterChase};
+        }
+        else if (easyDifficulty)
+        {
+            parameters = new List<List<float>>() { Easy.blinkyIdleScatterChase,
+                Easy.PinkyIdleScatterChase, Easy.InkyIdleScatterChase,
+            Easy.ClydeIdleScatterChase};
+
+        }
+        else
+        {
+            Debug.Log("No Difficulty Set");
+        }
+
+        for (int i = 0; i < _ghost.Length; i++)
+        {
+            ghost[i].ModifyBehaviourDuration(ghost[i].idle, parameters[i][0]);
+            ghost[i].ModifyBehaviourDuration(ghost[i].scatter, parameters[i][1]);
+            ghost[i].ModifyBehaviourDuration(ghost[i].chase, parameters[i][2]);
         }
     }
 }
