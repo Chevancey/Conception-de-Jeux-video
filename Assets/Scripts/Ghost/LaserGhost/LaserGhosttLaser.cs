@@ -67,6 +67,7 @@ public class LaserGhostLaser : MonoBehaviour
 
         if(hits.Length > 0)
         {
+            shoot = false;
             GameManager.Instance.PlayerDeath();
         }
 

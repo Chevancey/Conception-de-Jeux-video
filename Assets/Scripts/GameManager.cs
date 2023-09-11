@@ -75,15 +75,6 @@ public class GameManager : Singleton<GameManager>
 
     private void GameOver() 
     {
-        for (int i = 0; i < ghost.Length; i++)
-        {
-            _ghost[i].gameObject.SetActive(false);
-        }
-        if (hardDifficulty)
-        {
-            _laserGhost.gameObject.SetActive(false);
-        }
-
         Invoke(nameof(ShowEndScreen), waitForReset);
     }
 
@@ -119,6 +110,7 @@ public class GameManager : Singleton<GameManager>
 
     private void ResetState() 
     {
+
         music.clip = audioClips[0];
         music.loop = true;
         music.Play();
@@ -242,11 +234,11 @@ public class GameManager : Singleton<GameManager>
     {
         for (int i = 0; i < ghost.Length; i++)
         {
-            _ghost[i].gameObject.SetActive(false);
+            _ghost[i].movement.setMotionless();
         }
         if (hardDifficulty)
         {
-            _laserGhost.gameObject.SetActive(false);
+            _laserGhost.movement.setMotionless();
         }
         
         pacman.Dying();
