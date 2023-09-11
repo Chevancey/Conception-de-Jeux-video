@@ -14,4 +14,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HighScoreScene.unity
     guid: 42452540dbe82204ca1078da95702fd7
+  - enabled: 1
+    path: Assets/Scenes/PacmanEasy.unity
+    guid: 68284aeca58c3a34c8029d3a6c182e16
+  - enabled: 1
+    path: Assets/Scenes/PacmanHard.unity
+    guid: 05e0a1d7e11f4e4409ac7db5b8c74d84
+  - enabled: 1
+    path: Assets/Scenes/PacmanIntermediate.unity
+    guid: 3b86d57e26c119043aab25f250a572a1
+  - enabled: 1
+    path: Assets/Scenes/Pacman2Hard.unity
+    guid: f6f0873835369b947b24cbecee6fec8d
+  - enabled: 1
+    path: Assets/Scenes/Pacman2Intermediate.unity
+    guid: aa18c68ba58f1a14ebda81534c038ae2
+  - enabled: 1
+    path: Assets/Scenes/Pacman2Easy.unity
+    guid: 34ac012827374b54a849ebee03336ed6
   m_configObjects: {}
