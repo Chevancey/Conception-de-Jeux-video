@@ -10,6 +10,7 @@ using UnityEngine.Tilemaps;
 
 public class GameManager : Singleton<GameManager>
 {
+
     public bool easyDifficulty = true;
     public bool intermediateDifficulty = false;
     public bool hardDifficulty = false;
