@@ -21,6 +21,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private GameObject levelSelectionPanel;
     private Panel currentPanel;
+    [SerializeField]
+    private GameObject warningHardPanel;
 
     private void Start() {
         GoToMainPanel();
@@ -50,6 +52,7 @@ public class MainMenu : MonoBehaviour
 
     public void GoToSelectDifficulty() {
         mainPanel.SetActive(false);
+        warningHardPanel.SetActive(false);
         difficultySelectionPanel.SetActive(true);
         levelSelectionPanel.SetActive(false);
         currentPanel = Panel.Difficulty;
@@ -63,8 +66,16 @@ public class MainMenu : MonoBehaviour
     }
 
     public void SelectDifficulty(int difficulty) {
+        warningHardPanel.SetActive(false);
         targetDifficulty = difficulty;
         GoToSelectLevel();
+    }
+
+    public void WarningHardMode()
+    {
+        difficultySelectionPanel.SetActive(false);
+        warningHardPanel.SetActive(true);
+
     }
 
     public void SelectLevel(int level) {

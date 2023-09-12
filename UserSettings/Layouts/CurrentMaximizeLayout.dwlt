@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 27196
+  controlID: 48064
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -92,7 +92,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 27197
+  controlID: 48065
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 27198
+  controlID: 48066
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -236,9 +236,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 1679ffff6cd3ffffcce4ffff52e8ffff1afbffffbe760000c2760000da760000f8760000fe7600000c770000147700008a770000a67700009c7a0000ae7a0000ec7a0000
+      m_SelectedIDs: 142fffff
+      m_LastClickedID: -53484
+      m_ExpandedIDs: 72fcfeff6425ffff062fffffc43cffff2e4cffff6060ffff1679ffff6cd3ffffcce4ffff52e8ffff1afbffffbe760000c2760000da760000f8760000fe7600000c770000147700008a770000a67700009c7a0000ae7a000064990000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -671,9 +671,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 434.95148, y: 184.15062, z: -3.6092482}
+    m_Target: {x: 277.527, y: 138.46877, z: -0.967699}
     speed: 2
-    m_Value: {x: 434.95148, y: 184.15062, z: -3.6092482}
+    m_Value: {x: 277.527, y: 138.46877, z: -0.967699}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -723,9 +723,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 336.83572
+    m_Target: 226.85567
     speed: 2
-    m_Value: 336.83572
+    m_Value: 226.85567
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -822,7 +822,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Fonts
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -830,16 +830,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Fonts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: W:\Cours\Double_diplome\Cours\Automne\Conception_jeux_video\Pacman\Conception-de-Jeux-video
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 72750000
-    m_LastClickedID: 30066
-    m_ExpandedIDs: 00000000d8740000da740000dc74000074750000
+    scrollPos: {x: 0, y: 31}
+    m_SelectedIDs: 76750000
+    m_LastClickedID: 30070
+    m_ExpandedIDs: 00000000d8740000da740000dc7400007275000074750000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -892,10 +892,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 142fffff
+    m_LastClickedInstanceID: -53484
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c62300003e72000052720000567200003a7200004a72000000000000
+    m_ExpandedInstanceIDs: c62300003e72000052720000567200003a7200004a720000000000003e9800001a970000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
