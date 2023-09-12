@@ -3038,8 +3038,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Be aware, this setting was made for players who seek a challenge. Ghost
-    will be relentless, chasing you more often, for longer periods of time and a
-    another small suprise awaits you ... '
+    will be relentless, chasing you more often, for longer periods of time and another
+    small suprise awaits you ... '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
