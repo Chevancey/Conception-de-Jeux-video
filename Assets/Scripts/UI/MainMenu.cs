@@ -89,6 +89,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame(string levelName)
     {
+        SceneData.currentsSeneName = levelName;
         SceneManager.LoadScene(levelName);
     }
 

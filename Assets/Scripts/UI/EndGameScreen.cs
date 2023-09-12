@@ -18,7 +18,7 @@ public class EndGameScreen : MonoBehaviour
         playAgain.onClick.AddListener(() =>
         {
             Time.timeScale = 1f;
-            SceneManager.LoadScene("Pacman");
+            SceneManager.LoadScene(SceneData.currentsSeneName);
         });
         mainMenuButton.onClick.AddListener(() =>
         {
