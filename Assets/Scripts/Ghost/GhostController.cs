@@ -52,7 +52,7 @@ public class GhostController : MonoBehaviour
         movement.ResetState();
 
         chase.Disable();
-        scared.Disable();
+        NotScared();
         scatter.Disable();
         returnBehavior.Disable();
         leaving.enabled = false;

@@ -247,6 +247,12 @@ public class GameManager : Singleton<GameManager>
 
             SetLives(currentLives - 1);
 
+            if (boundsTilemap.color == Color.red)
+            {
+                CancelInvoke();
+                EndPoweredState();
+            }
+
             if (currentLives > 0)
             {
                 Invoke(nameof(ResetState), waitForReset);
