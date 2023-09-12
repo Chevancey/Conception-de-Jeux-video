@@ -168,7 +168,7 @@ public class GameManager : Singleton<GameManager>
                 CancelInvoke();
                 EndPoweredState();
             }
-            StartCoroutine(StartAfterSound(audioClips[3],NewRound, waitForReset));
+            StartCoroutine(StartAfterSound(audioClips[3],NewRound));
         }
     }
 
